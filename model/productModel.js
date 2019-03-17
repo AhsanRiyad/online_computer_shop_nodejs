@@ -100,6 +100,13 @@ module.exports={
 		db.getResult(sql , callback);
 
 
+	},
+	getCartProduct: function(uid , callback){
+		var sql = "call cartPage("+uid+")";
+		console.log(sql);
+
+		db.getResult(sql , callback);
+
 	}
 
 }

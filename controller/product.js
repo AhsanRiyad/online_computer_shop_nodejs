@@ -109,11 +109,38 @@ router.get('/cart' , function(req, res){
 	// session
 	if(req.session.email){
 		obj.loginStatus = true;
+
+		obj.user_id = req.session.userinfo;
+		console.log(obj.user_id[0].u_id);
+		obj.user_id_P = obj.user_id[0].u_id;
+
+		productModel.getCartProduct(obj.user_id_P , function(result){
+			console.log(result[0]);
+			console.log(result[0]);
+			console.log(result[1][0].total);
+
+
+
+			obj.products = result[0];
+			obj.total = result[1][0].total;
+			res.render('product/cart' , obj);
+
+		});
+
+
+
 		}else{
 		obj.loginStatus = false;
+		res.redirect('/auth');
 		}
 
-	res.render('product/cart' , obj);
+
+
+
+
+
+
+	
 });
 
 

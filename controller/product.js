@@ -114,6 +114,13 @@ router.get('/cart' , function(req, res){
 		console.log(obj.user_id[0].u_id);
 		obj.user_id_P = obj.user_id[0].u_id;
 
+		productModel.cart_count(obj.user_id_P , function(result){
+			console.log('cart count result');
+			console.log(result[0].cart_count);
+			obj.cart_count = result[0].cart_count;
+		});
+
+
 		productModel.getCartProduct(obj.user_id_P , function(result){
 			console.log(result[0]);
 			console.log(result[0]);

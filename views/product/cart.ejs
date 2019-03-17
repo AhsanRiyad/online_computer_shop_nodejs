@@ -20,16 +20,27 @@
 		<tbody>
 				
 
-			
-			
-			<tr>
-				<th scope="row"><?php echo $productCart; ?></th>
 
-				<td>php echo $row['productName']</td>
+			
+			
+				<%
+				for(var i = 0 ; i<products.length; i++){%>
+				
+				<tr>
+
+				<th scope="row"><%= i+1 %></th>				
+				
+				<td><%=products[i].product_name%></td>
 				<td>php echo $row['descripition']; </td>
-				<td>php echo $row['quantity']; </td>
-				<td>php echo $row['price']*$row['quantity'];</td>
-			</tr>
+				<td><%=products[i].product_qntity%> </td>
+				<td><%=products[i].product_price%></td>
+			
+				</tr>
+
+
+				<%}%>
+
+				
 
 			<tr>
 				<th scope="row"></th>

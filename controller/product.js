@@ -384,11 +384,46 @@ router.post('/addtocart' , function(req , res){
 	var myinfo = JSON.parse(myinfoJson);
 	console.log(myinfo);
 
-	productModel.addToCart(myinfo , function(status){
-		
+	productModel.addToCart(myinfo , function(result){
+		if(result[1][0].status == 'added'){
+			console.log(result);
+			console.log('c_id');
+			console.log(result[2][0].cart_count);
+			console.log('added');
+
+			/*var resJson = { status : result[1][0].status ,
+			cart_count : result[2][0].cart_count }
+			var myJSON = JSON.stringify(resJson);
+			console.log(myJSON);
+			res.json(myJSON);
+*/
+			
+			var resJson = { 'status' : result[1][0].status ,
+			'cart_count' : result[2][0].cart_count }
+			//var myJSON = JSON.stringify(resJson);
+			console.log(resJson);
+			res.json(resJson);
+
+		}else{
+			/*console.log(result);
+			var resJson = { status : result[1][0].status ,
+			cart_count : result[2][0].cart_count }
+			var myJSON = JSON.stringify(resJson);
+			console.log(myJSON);
+			res.json(myJSON);*/
+
+			var resJson = { 'status' : result[1][0].status ,
+			'cart_count' : result[2][0].cart_count }
+			//var myJSON = JSON.stringify(resJson);
+			console.log(resJson);
+			res.json(resJson);
+
+
+
+		}
 	});
 
-	res.json('processing');
+	
 
 
 });

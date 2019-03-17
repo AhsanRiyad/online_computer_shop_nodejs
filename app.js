@@ -19,7 +19,8 @@ var authenticationArray = ['/auth'];
 var title = {
 	title: 'index', 
 	justInProduct: [] , 
-	RecommendedProduct : []
+	RecommendedProduct : [] , 
+	cart_count : 0 
 
 }
 
@@ -75,7 +76,16 @@ app.get('/' , (req,res)=>{
 		console.log(result);
 
 		if(req.session.email){
+
+		title.userinfo = req.session.userinfo;
+		console.log(title.userinfo[0].u_id);
+		productModel.cart_count(title.userinfo[0].u_id , function(result){
+			console.log('cart count result');
+			console.log(result[0].cart_count);
+			title.cart_count = result[0].cart_count;
+		});
 		title.loginStatus = true;
+
 		}else{
 		title.loginStatus = false;
 		}

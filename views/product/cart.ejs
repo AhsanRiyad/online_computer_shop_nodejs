@@ -1,0 +1,63 @@
+<% include ../header %>
+
+
+
+
+
+<div class="container">
+	
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">#</th>
+				
+				<th scope="col">Name</th>
+				<th scope="col">Short Description</th>
+				<th scope="col">Quantity</th>
+				<th scope="col">Price</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			
+			<tr>
+				<th scope="row"><?php echo $productCart; ?></th>
+
+				<td>php echo $row['productName']</td>
+				<td>php echo $row['descripition']; </td>
+				<td>php echo $row['quantity']; </td>
+				<td>php echo $row['price']*$row['quantity'];</td>
+			</tr>
+
+			<tr>
+				<th scope="row"></th>
+				<td></td>
+				<td></td>
+				<td>Total Amount:</td>
+				<td> echo $totalPrice;</td>
+
+
+			</tr>
+
+
+
+		</tbody>
+	</table>
+
+	<hr>
+	
+
+
+	<form action="#" method="post">
+		<input 
+		href="confirmOrder.php" class="text-dark btn btn-warning" type="submit" value="confirm order" name="submit">
+	</form>
+
+
+	<a href="http://localhost:3000" class="btn btn-info mt-1">Continue Shopping</a>
+
+	
+</div>
+
+
+<% include ../footer %>

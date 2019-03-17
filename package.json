@@ -1,0 +1,33 @@
+{
+  "name": "nodeproject",
+  "version": "1.0.0",
+  "description": "it's a university course project",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
+    "cookie-parser": "^1.4.4",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "init": "^0.1.2",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhsanRiyad/Node_js_project.git"
+  },
+  "keywords": [
+    "nodejs_ecommerce_website"
+  ],
+  "author": "Riyad and Kaium",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AhsanRiyad/Node_js_project/issues"
+  },
+  "homepage": "https://github.com/AhsanRiyad/Node_js_project#readme"
+}

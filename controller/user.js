@@ -10,6 +10,7 @@ var obj = {
 	promoArray: ['far' , 'faerf'],
 	userinfo: [{ last_name: 'Riyad' }],
 	loginStatus: false,
+	cart_count: 0
 }
 
 

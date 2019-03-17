@@ -10,7 +10,8 @@ var obj = {
 	checkbox : '',
 	regSuceess: 'other',
 	nullVal : false,
-	loginStatus: false
+	loginStatus: false, 
+	cart_count: 0
 		
 }
 

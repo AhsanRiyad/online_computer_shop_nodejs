@@ -35,7 +35,7 @@ router.get('/confirm' , function(req, res){
 	obj.user_id = req.session.userinfo;
 		console.log(obj.user_id[0].u_id);
 		obj.user_id_P = obj.user_id[0].u_id;
-	
+
 	productModel.cart_count(obj.user_id_P , function(result){
 			console.log('cart count result');
 			console.log(result[0].cart_count);
@@ -44,6 +44,22 @@ router.get('/confirm' , function(req, res){
 
 
 
+	productModel.getCartProduct(obj.user_id_P , function(result){
+			console.log(result[0]);
+			console.log(result[0]);
+			console.log(result[1][0].total);
+
+
+
+			obj.products = result[0];
+			obj.total = result[1][0].total;
+			res.render('product/cart' , obj);
+
+		});
+
+
+
+	
 
 	res.render('Order/confirm_order' , obj);
 });

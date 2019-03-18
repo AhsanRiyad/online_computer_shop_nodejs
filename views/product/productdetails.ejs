@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="row justify-content-center">
-		<div class="col-4">
+		<div class="col-6">
 			<img class="img-fluid" src="http://localhost:3000/lib/img/product_demo.png" alt="">
 			<hr>
 			<h3>Name: <%=product.product_name%></h3>
@@ -36,7 +36,37 @@
 
 			<a onclick="jsFuntionAddToCart(this)" href="#" class="btn btn-warning mb-3 mt-2" id="addToCart">Add to Cart</a>
 
-			<a onclick="jsFuntionAddToCart(this)" href="#" class="btn btn-success mb-3 mt-2" >Buy now</a>
+			<!-- <a onclick="jsFuntionAddToCart(this)" href="#" class="btn btn-success mb-3 mt-2" >Buy now</a> -->
+
+
+
+
+				<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-6">Reviews</h1>
+    <hr>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    <hr>
+  </div>
+</div>
+
+			<form>
+  
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1" class=""> Add a Review </label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <input type="submit" value="Post Review" name="submit" class="btn btn-success mt-2">
+  </div>
+</form>
+
+
+
+
+
+
+
+
+
 
               
               <%

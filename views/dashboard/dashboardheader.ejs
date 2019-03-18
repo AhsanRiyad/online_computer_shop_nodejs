@@ -26,10 +26,13 @@ var homepage = "http://localhost:3000/";
 
     </div>
 
+    <%
+    if(userinfo[0].u_type == 'admin')
+    {
+    %>
 
     
-
-    <a class="text-white" href="http://localhost:3000/user/viewuser">
+      <a class="text-white" href="http://localhost:3000/user/viewuser">
       <div class="      
         py-2 text-center my-4 bg-secondary">
 
@@ -44,6 +47,7 @@ var homepage = "http://localhost:3000/";
 
         </div></a>
 
+      
 
         <a class="text-light" href='http://localhost:3000/dashboard/profile'>
           <div class="
@@ -52,8 +56,7 @@ var homepage = "http://localhost:3000/";
           <i class="fas w_f fa-user "></i> Profile
 
         </div></a>
-        
-        
+
         <a class="text-light" href='<%=addPromo%>'>
           <div class="  
           py-2 text-center my-4 bg-secondary">
@@ -74,7 +77,7 @@ var homepage = "http://localhost:3000/";
           <a class="text-white" href="#">
             <div class="  bg-secondary py-2 text-center my-4">
 
-              <i class="fab fa-product-hunt"></i> New Product Request
+              <i class="fab fa-product-hunt"></i> Manipulate Comments
 
             </div></a>
 
@@ -92,10 +95,62 @@ var homepage = "http://localhost:3000/";
 
               </div></a>
 
-              
+
+      
+
+
+    <%
+    }
+    %>
 
 
 
+    <%
+    if(userinfo[0].u_type == 'user')
+    {
+    %>
+  <a class="text-light" href='http://localhost:3000/dashboard/profile'>
+          <div class="
+          py-2 text-center my-4 bg-secondary">
+
+          <i class="fas fa-shopping-cart "></i> My Orders
+
+        </div></a>
+
+    <a class="text-light" href='http://localhost:3000/dashboard/profile'>
+          <div class="
+          py-2 text-center my-4 bg-secondary">
+
+          <i class="fas w_f fa-user "></i> Profile
+
+        </div></a>
+    
+
+
+    <a class="text-white" href='<%=homepage%>'>
+          <div class="bg-success py-2 text-center my-4">
+
+            <i class="fas fa-shopping-cart"></i> Back to Shop Page
+
+          </div></a>
+
+            <a class="text-white" href='<%=signout%>'>
+              <div class="  bg-danger py-2 text-center my-4">
+
+                <i class="fas fa-sign-out-alt"></i>Sign Out
+
+              </div></a>
+
+
+
+
+
+
+    <%
+    }
+    %>
+
+    
 
             </div>
 

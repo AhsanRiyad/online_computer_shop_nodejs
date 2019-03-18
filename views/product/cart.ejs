@@ -19,9 +19,22 @@
 		</thead>
 		<tbody>
 				
-
-
-			
+				<!-- <%
+				if(products.length < 1){%>
+				
+				
+				
+				
+				<%
+				}else{%>
+				
+				
+				
+				
+				<%
+				}
+				%> -->
+				
 			
 				<%
 				for(var i = 0 ; i<products.length; i++){%>
@@ -61,11 +74,9 @@
 	
 
 
-	<form action="#" method="post">
-		<input 
-		href="confirmOrder.php" class="text-dark btn btn-warning" type="submit" value="confirm order" name="submit">
-	</form>
+	
 
+	<a href="http://localhost:3000/order/confirm" class="text-dark btn btn-warning">Confirm Order</a>
 
 	<a href="http://localhost:3000" class="btn btn-info mt-1">Continue Shopping</a>
 

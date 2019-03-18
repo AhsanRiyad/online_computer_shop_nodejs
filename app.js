@@ -8,6 +8,7 @@ var product = require.main.require('./controller/product');
 var productModel = require.main.require('./model/productModel');
 var authentication = require.main.require('./controller/authentication');
 var user = require.main.require('./controller/user');
+var order = require.main.require('./controller/order');
 
 
 var app = express();
@@ -38,6 +39,8 @@ app.use( authenticationArray , authentication);
 app.use('/dashboard' , dashboard);
 app.use('/product' , product);
 app.use('/user' , user);
+app.use('/order' , order);
+
 
 app.use('/lib/img', express.static(__dirname + '/lib/img/'));
 app.use('/lib/js', express.static( __dirname + '/lib/js/'));

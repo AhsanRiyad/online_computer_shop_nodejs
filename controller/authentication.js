@@ -118,7 +118,8 @@ router.post( '/reg' , function(req, res){
 		gender  : req.body.gender,
 		first_name  : req.body.first_name,
 		last_name  : req.body.last_name,
-		phone : req.body.phone
+		phone : req.body.phone,
+		user_type: req.body.user_type
 		}
 		
 		userModel.registration(user, function(status){

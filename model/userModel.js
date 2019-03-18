@@ -14,13 +14,13 @@ module.exports={
 		console.log(user.year);
 		console.log(dob);
 
-		var sql1 = "INSERT INTO `user`( `u_password`,  `u_email`, `u_mobile`, `dob`, `u_status`, `u_type`) VALUES ('"+user.password+"','"+user.email+"',"+user.phone+",'"+dob+"','g_user','valid', '"+dob+"')";
+		var sql1 = "INSERT INTO `user`( `u_password`,  `u_email`, `u_mobile`, `dob`, `u_status`, `u_type`) VALUES ('"+user.password+"','"+user.email+"',"+user.phone+",'"+dob+"','"+user.user_type+"','valid', '"+dob+"')";
 		
 
 
 
 
-		var  sql = "INSERT INTO `user`(`u_password`, `u_email`, `u_mobile`, `dob`, `u_status`, `u_type`, `first_name`, `last_name`) VALUES ('"+user.password+"','"+user.email+"',"+user.phone+",'"+dob+"','valid','user','"+user.first_name+"','"+user.last_name+"')";
+		var  sql = "INSERT INTO `user`(`u_password`, `u_email`, `u_mobile`, `dob`, `u_status`, `u_type`, `first_name`, `last_name`) VALUES ('"+user.password+"','"+user.email+"',"+user.phone+",'"+dob+"','valid','"+user.user_type+"','"+user.first_name+"','"+user.last_name+"')";
 
 
 

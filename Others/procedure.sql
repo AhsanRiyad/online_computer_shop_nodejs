@@ -32,7 +32,8 @@ END $$
 
 
 
-
+#######################################################
+#working // add to cart // latest
 
 DELIMITER $$
 CREATE OR REPLACE PROCEDURE cart(IN pid INT , IN uid INT , IN qnt INT)
@@ -152,7 +153,8 @@ END $$
 
 
 
-
+##################################################
+# working
 
 DELIMITER $$
 CREATE OR REPLACE PROCEDURE order_t(IN uid INT , IN o_date DATE , IN p_method VARCHAR(20))
@@ -162,10 +164,14 @@ DECLARE b INT DEFAULT 0;
 DECLARE cur_1 CURSOR FOR 
 SELECT product_id , quantity FROM CART WHERE user_id = uid;
 DECLARE CONTINUE HANDLER FOR NOT FOUND SET b = 1;
+
 SELECT MAX(order_id) INTO o_no FROM ORDER_T;
+INSERT INTO `order_t`(`order_id`, `order_date`, `payment_method`,  `user_id`) VALUES (o_no+1 , o_date , p_method , uid );
 
 OPEN cur_1;
 REPEAT FETCH cur_1 INTO p_id , qntity ;
+
+INSERT INTO `order_includ_product`(`order_id`, `product_id`, `qntity`) VALUES (o_no+1 , p_id ,qntity);
 
 
 SELECT p_id , qntity;
@@ -173,11 +179,9 @@ SELECT p_id , qntity;
 UNTIL b = 1
 END REPEAT;
 CLOSE cur_1;
+
+DELETE FROM `cart` WHERE user_id = uid;
+
 END $$
 
 
-
-INSERT INTO `order_t`(`order_id`, `order_date`, `payment_method`,  `user_id`) VALUES (o_no+1 , o_date , p_method , uid );
-
-
-INSERT INTO `order_includ_product`(`order_id`, `product_id`, `qntity`, `counter`) VALUES (o_no+1 , p_id ,[value-3],[value-4]);

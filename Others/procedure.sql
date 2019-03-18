@@ -160,6 +160,7 @@ DELIMITER $$
 CREATE OR REPLACE PROCEDURE order_t(IN uid INT , IN o_date DATE , IN p_method VARCHAR(20))
 BEGIN
 DECLARE o_no, p_id , qntity INT;
+DECLARE status VARCHAR(20);
 DECLARE b INT DEFAULT 0;
 DECLARE cur_1 CURSOR FOR 
 SELECT product_id , quantity FROM CART WHERE user_id = uid;
@@ -179,9 +180,9 @@ SELECT p_id , qntity;
 UNTIL b = 1
 END REPEAT;
 CLOSE cur_1;
-
+SET status = 'done' ;
 DELETE FROM `cart` WHERE user_id = uid;
-
+SELECT status;
 END $$
 
 

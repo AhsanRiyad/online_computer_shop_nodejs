@@ -19,15 +19,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AhsanRiyad/Node_js_project.git"
+    "url": "git+https://github.com/AhsanRiyad/online_computer_shop.git"
   },
   "keywords": [
     "nodejs_ecommerce_website"
   ],
-  "author": "Riyad and Kaium",
+  "author": "Riyad",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AhsanRiyad/Node_js_project/issues"
+    "url": "https://github.com/AhsanRiyad/online_computer_shop/issues"
   },
-  "homepage": "https://github.com/AhsanRiyad/Node_js_project#readme"
+  "homepage": "https://github.com/AhsanRiyad/online_computer_shop#readme"
 }

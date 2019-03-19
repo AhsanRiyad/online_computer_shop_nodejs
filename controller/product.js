@@ -134,6 +134,24 @@ router.get('/search' , function(req , res){
 });
 
 
+
+router.get('/viewproducts' , function(req, res){
+
+	console.log('view products')
+
+	productModel.getAllProduct(function(result){
+		console.log(result);
+	});
+
+
+});
+
+
+
+
+
+
+
 router.get('/cart' , function(req, res){
 	// session
 	if(req.session.email){

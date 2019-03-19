@@ -220,15 +220,17 @@ router.get('/productdetails/:pid' , function(req, res){
 			
 			console.log(result);
 			console.log(result.length);
-
+			//console.log(result[0].review_text);
 			obj.reviews = result;
+
+			res.render('product/productdetails' , obj);	
+				console.log(obj);
 			
 
 
 		});
 
-		res.render('product/productdetails' , obj);	
-				console.log(obj);
+		
 		
 
 		

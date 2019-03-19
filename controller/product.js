@@ -138,9 +138,13 @@ router.get('/search' , function(req , res){
 router.get('/viewproducts' , function(req, res){
 
 	console.log('view products')
-
+	obj.userinfo = req.session.userinfo;
 	productModel.getAllProduct(function(result){
 		console.log(result);
+		
+		obj.allProducts = result;
+
+		
 	});
 
 

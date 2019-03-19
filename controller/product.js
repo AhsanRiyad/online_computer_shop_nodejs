@@ -15,12 +15,14 @@ var obj = {
 
 
 
-router.get('/autosearch/:id' , function(req, res){
+router.get('/autosearch/:id/:cat' , function(req, res){
 
 
 	obj.userinfo = req.session.userinfo;
 	console.log('get block');
 	console.log(req.params.id);
+	console.log(req.params.cat);
+
 	
 
 	// session
@@ -32,9 +34,12 @@ router.get('/autosearch/:id' , function(req, res){
 		}
 
 
+	var searchDetails = {
+		searchText : req.params.id, 
+		category: req.params.cat
+	}
 
-
-	productModel.searchProduct(req.params.id , function(result){
+	productModel.searchProduct(searchDetails , function(result){
 		if(result.length<1){
 			console.log('no result');
 			res.jsonp({ user: 'no match'  });

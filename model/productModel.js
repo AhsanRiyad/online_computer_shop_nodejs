@@ -41,7 +41,7 @@ module.exports={
 	},
 	searchProduct: function(searchDetails , callback){
 		console.log('product model '+ searchDetails.searchText);
-		var pname = searchDetails.searchText + '%' ; 
+		var pname ='%' + searchDetails.searchText + '%' ; 
 		var catName = searchDetails.category ;
 
 		if(catName == 'all'){
@@ -58,7 +58,7 @@ module.exports={
 	},
 	searchPage: function(searchDetails , callback){
 		console.log('search model '+ searchDetails.searchText);
-		var pname = searchDetails.searchText + '%' ; 
+		var pname ='%' + searchDetails.searchText + '%' ; 
 		var catValue  = searchDetails.category ; 
 
 

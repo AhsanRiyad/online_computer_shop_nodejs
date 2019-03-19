@@ -63,6 +63,30 @@ router.get('/autosearch/:id' , function(req, res){
 });
 
 
+router.post('/review' , function(req, res){
+	
+	var d = new Date();
+	var day = d.getDate();
+	var month = d.getMonth();
+	var year = d.getFullYear();
+
+	var date = year+'-'+month+'-'+day;
+
+	var revInfo = {
+		rev_text: req.body.rev_text, 
+		rev_date: date ,
+		productId: req.body.productid ,
+		user_id: req.body.uid
+
+	}
+
+	console.log(revInfo);
+	var url_p = 'productdetails/'+req.body.productid;
+	res.redirect(url_p);
+
+});
+
+
 router.get('/search' , function(req , res){
 
 	
@@ -184,7 +208,7 @@ router.get('/productdetails/:pid' , function(req, res){
 
 		}
 		
-		
+		obj.pid = pid ; 
 
 				console.log(obj);
 		

@@ -186,3 +186,56 @@ SELECT status;
 END $$
 
 
+
+
+#############################################################
+#review option
+
+DELIMITER $$
+
+CREATE OR REPLACE PROCEDURE review(IN uid INT , IN pid INT , IN rev_text VARCHAR(50) , IN rev_date DATE)
+BEGIN
+
+DECLARE rev_id INT;
+DECLARE status VARCHAR(20);
+SET status = 'DONE';
+
+SELECT review_id INTO rev_id FROM `review` WHERE product_id = pid and user_id = uid;
+
+IF rev_id IS NOT NULL
+THEN
+
+UPDATE `review` SET `review_text`= rev_text ,`review_date`= rev_date WHERE product_id= pid AND user_id= uid;
+
+SELECT status;
+
+
+ELSE
+
+INSERT INTO `review`( `review_text`, `review_date`, `product_id`, `user_id`) VALUES (rev_text , rev_date , pid , uid ) ; 
+
+SELECT status;
+
+END IF;
+
+END $$
+
+
+
+
+
+SELECT review_id INTO rev_id FROM `review` WHERE product_id = pid and user_id = uid;
+
+IF rev_id IS NOT NULL
+THEN
+
+UPDATE `review` SET `review_text`= rev_text ,`review_date`= rev_date WHERE `product_id`= pid ,`user_id`= uid;
+
+ELSE
+
+INSERT INTO `review`( `review_text`, `review_date`, `product_id`, `user_id`) VALUES (rev_text , rev_date , pid , uid ) ; 
+
+
+END IF;
+
+

@@ -142,6 +142,49 @@ router.get('/search' , function(req , res){
 
 
 
+
+router.get('/category/:catName' , function(req , res){
+
+	
+	console.log('parameters');
+	
+	var catName = req.params.catName ;
+	
+	productModel.searchCat(catName , function(result){
+
+		if(result.length<1){
+			console.log(result);
+			obj.searchResult = result;
+			obj.catName = catName ; 
+			console.log(obj);
+			res.render('product/product_cat' , obj);
+		}
+		else{
+			console.log(result);
+			obj.searchResult = result;
+			obj.catName = catName ; 
+
+			console.log(obj);
+			res.render('product/product_cat' , obj);
+		}
+
+		
+	});
+	
+
+
+
+	//res.render('product/productSearch' , obj);
+
+
+});
+
+
+
+
+
+
+
 router.get('/viewproducts' , function(req, res){
 
 	console.log('view products')

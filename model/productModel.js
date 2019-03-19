@@ -158,6 +158,18 @@ module.exports={
 
 
 
+	},
+	searchCat: function(catName , callback){
+
+		var sql = "select * from products where  category_name='"+catName+"' " ; 
+
+		console.log(sql);
+
+
+		db.getResult(sql , callback);
+
+
+
 	}
 
 

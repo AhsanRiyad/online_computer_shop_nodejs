@@ -56,11 +56,30 @@ module.exports={
 		db.getResult(sql, callback);
 
 	},
-	searchPage: function(productname , callback){
-		console.log('search model '+ productname);
-		var pname = productname + '%' ; 
-		var sql = "select * from products where product_name like '"+pname+"' ";
+	searchPage: function(searchDetails , callback){
+		console.log('search model '+ searchDetails.searchText);
+		var pname = searchDetails.searchText + '%' ; 
+		var catValue  = searchDetails.category ; 
+
+
+		if(catValue=='all'){
+			var sql = "select * from products where product_name like '"+pname+"' ";
+		
+
+		}else{
+
+			var sql = "select * from products where product_name like '"+pname+"' and category_name='"+catValue+"' ";
+		
+
+		}
+
+		
+
+		console.log('search page');
+		console.log(searchDetails);
 		console.log(sql);
+
+
 
 		db.getResult(sql, callback);
 

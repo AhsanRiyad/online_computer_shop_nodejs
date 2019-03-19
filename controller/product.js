@@ -103,22 +103,24 @@ router.get('/search' , function(req , res){
 		console.log('parameters');
 	var searchQuery = req.query.searchbox;
 	console.log(req.query.searchbox);
+	console.log(req.query.catValue);
 
-	/*productModel.searchPage(searchQuery , function(result){
-		if(result.length<1){
+	var searchDetails = {
+		searchText : req.query.searchbox ,
+		category: req.query.catValue 
 
-		}else{
-			obj.searchProductList = result;
-			console.log(result);
-			console.log('search page');
-			res.render('product/productSearch' , obj);
-		}
-	});*/
+	}
+
+	console.log(searchDetails);
+
 	
-	productModel.searchPage(searchQuery , function(result){
+	productModel.searchPage(searchDetails , function(result){
 
 		if(result.length<1){
 			console.log(result);
+			obj.searchResult = result;
+			console.log(obj);
+			res.render('product/productSearch' , obj);
 		}
 		else{
 			console.log(result);

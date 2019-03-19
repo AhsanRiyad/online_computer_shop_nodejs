@@ -55,11 +55,28 @@ var signout = "http://localhost:3000/auth/logout";
                       
                 
                       <input type="text" class="form-control" id="autosearch" placeholder="Search" name="searchbox">
+
+
+    <div class="input-group mt-2">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Categories</label>
+  </div>
+  <select class="custom-select" id="inputGroupSelect01">
+    <option selected value="all">All</option>
+    <option value="Notebook">Notebook</option>
+    <option value="Tablet">Tablet</option>
+    <option value="Software">Software</option>
+    <option value="Storage">Storage</option>
+    <option value="Scanner">Scanner</option>
+    <option value="Printer">Printer</option>
+  </select>
+</div>
+
                     </div>
                   </div>
 
                   <div class="col-3">
-                    <button type="submit" class="btn btn-primary" name="submit">Search</button>
+                    <button type="submit" class="btn btn-primary py-4 " name="submit">Search</button>
               
 
 

@@ -143,25 +143,29 @@ router.get('/search' , function(req , res){
 
 
 
-router.get('/category/:catName' , function(req , res){
+router.get('/category/:catName/:subCat' , function(req , res){
 
 	
 	console.log('parameters');
 	
 	var catName = req.params.catName ;
+	var subCat = req.params.subCat ; 
 	
-	productModel.searchCat(catName , function(result){
+	productModel.searchCat(catName , subCat , function(result){
 
 		if(result.length<1){
 			console.log(result);
 			obj.searchResult = result;
 			obj.catName = catName ; 
+			obj.subCat = subCat;
 			console.log(obj);
 			res.render('product/product_cat' , obj);
 		}
 		else{
 			console.log(result);
 			obj.searchResult = result;
+			obj.subCat = subCat;
+			
 			obj.catName = catName ; 
 
 			console.log(obj);
@@ -178,6 +182,9 @@ router.get('/category/:catName' , function(req , res){
 
 
 });
+
+
+
 
 
 

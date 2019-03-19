@@ -159,9 +159,9 @@ module.exports={
 
 
 	},
-	searchCat: function(catName , callback){
+	searchCat: function(catName , subCat , callback){
 
-		var sql = "select * from products where  category_name='"+catName+"' " ; 
+		var sql = "select * from products where  category_name='"+catName+"' and sub_category='"+subCat+"' " ; 
 
 		console.log(sql);
 

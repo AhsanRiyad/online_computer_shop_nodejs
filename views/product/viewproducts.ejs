@@ -12,43 +12,36 @@
   <thead class="thead-light">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Mobile</th>
-      <th scope="col">Type</th>
-      <th scope="col">Status</th>
-      <th scope="col">delete</th>
-      <th scope="col">update</th>
+      <th scope="col">Product ID</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">View Reviews</th>
     </tr>
   </thead>
   <tbody>
     
 
-	<% for(var i=0; i< userArray.length; i++) {%>	
+	<% for(var i=0; i< allProducts.length; i++) {%>	
 
     <tr>
-      <th scope="row"> <%= userArray[i].u_id %> </th>
-      <td> <%= userArray[i].last_name %> </td>
-      <td> <%= userArray[i].u_mobile %> </td>
-      <td> <%= userArray[i].u_email %> </td>
-      <td><%= userArray[i].u_type %></td>
-      <td><%= userArray[i].u_status %></td>
+      <th scope="row"> <%=i+1%> </th>
+      <td> <%=allProducts[i].product_id%> </td>
+      <td> <%=allProducts[i].product_name%>  </td>
       <td> 
+        <a class="btn btn-primary" href="http://localhost:3000/user/updateuser/<%=allProducts[i].product_id%>">View Review</a>
+       </td>
+      
+      <!-- <td> 
         <form action="http://localhost:3000/user/deleteuser" method="post"> 
         
-       <input type="text" name="userIdDelete" hidden="true" value="<%= userArray[i].u_id %>">
+       <input type="text" name="userIdDelete" hidden="true" value="">
 
         <input type="submit" value="Delete" class="btn btn-danger">
 
-      </form>
-      </td>
+      </form> -->
+      <!-- </td> -->
       
 
-      <td> 
-
-        <a class="btn btn-primary" href="http://localhost:3000/user/updateuser/<%=userArray[i].u_id%>">Update</a>
-
-    </td>
+      
 
     </tr>
     

@@ -144,6 +144,8 @@ router.get('/viewproducts' , function(req, res){
 		
 		obj.allProducts = result;
 
+		res.render('product/viewproducts' , obj);
+
 		
 	});
 

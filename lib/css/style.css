@@ -5,6 +5,11 @@
 
 }
 
+#autosearch {
+    z-index: 99999; /* adjust this value */
+}
+
+
  /*mouse clickable*/
 a[href], input[type='submit'], input[type='image'], label[for], select, button, .pointer {
        cursor: pointer;

@@ -80,9 +80,14 @@ router.post('/review' , function(req, res){
 
 	}
 
-	console.log(revInfo);
-	var url_p = 'productdetails/'+req.body.productid;
-	res.redirect(url_p);
+	productModel.addReview(revInfo , function(result){
+		console.log(result);
+		console.log(revInfo);
+		var url_p = 'productdetails/'+req.body.productid;
+		res.redirect(url_p);
+	});
+
+	
 
 });
 

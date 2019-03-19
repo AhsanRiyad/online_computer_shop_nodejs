@@ -107,6 +107,20 @@ module.exports={
 
 		db.getResult(sql , callback);
 
+	},
+	addReview: function(revInfo , callback){
+
+		var sql = "call review("+revInfo.user_id+" , "+revInfo.productId+" , '"+revInfo.rev_text+"' , '"+revInfo.rev_date+"');";
+		console.log(sql);
+
+		db.getResult(sql , callback);
+
+
+	},
+	getReview: function(pid , callback){
+		var sql = "SELECT `review_id`, `review_text`, `review_status`, `review_date`, `product_id`, `user_id` FROM `review` WHERE product_id ="+pid+" ";
+
+		console.log(sql);
 	}
 
 }

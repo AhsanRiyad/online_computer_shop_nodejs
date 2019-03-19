@@ -215,10 +215,23 @@ router.get('/productdetails/:pid' , function(req, res){
 		
 		obj.pid = pid ; 
 
+		productModel.getReview(pid , function(result){
+			console.log('get review controller');
+			
+			console.log(result);
+			console.log(result.length);
+
+			obj.reviews = result;
+			
+
+
+		});
+
+		res.render('product/productdetails' , obj);	
 				console.log(obj);
 		
 
-		res.render('product/productdetails' , obj);	
+		
 
 	})
 	

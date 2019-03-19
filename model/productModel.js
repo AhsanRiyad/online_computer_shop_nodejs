@@ -120,6 +120,8 @@ module.exports={
 	getReview: function(pid , callback){
 		var sql = "SELECT `review_id`, `review_text`, `review_status`, `review_date`, `product_id`, `user_id` FROM `review` WHERE product_id ="+pid+" ";
 
+		db.getResult(sql , callback);
+
 		console.log(sql);
 	}
 

@@ -183,9 +183,20 @@ router.post('/up_rev/:product_id' , function(req, res){
 	//res.send('up rev');
 	obj.userinfo = req.session.userinfo;
 	var pid = req.params.product_id;
-	
-	console.log('inside post req');
+	var rev_id = req.body.rev_id;
 
+	console.log('inside post req');
+	console.log(pid);
+
+	console.log('rev id');
+	console.log(rev_id);
+
+	productModel.deleteReview(rev_id , function(status){
+
+		
+
+
+	});
 
 
 });

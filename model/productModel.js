@@ -123,6 +123,9 @@ module.exports={
 		db.getResult(sql , callback);
 
 		console.log(sql);
+	},
+	deleteReview: function(rev_id , callback){
+
 	}
 
 

@@ -172,8 +172,19 @@ router.get('/up_rev/:product_id' , function(req, res){
 
 	});
 
+});
 
+
+
+router.post('/up_rev/:product_id' , function(req, res){
+
+	console.log('up rev products')
+
+	//res.send('up rev');
+	obj.userinfo = req.session.userinfo;
+	var pid = req.params.product_id;
 	
+	console.log('inside post req');
 
 
 

@@ -26,7 +26,13 @@
       <td> <%=allReviews[i].review_date%>  </td>
       <td> <%=allReviews[i].user_id%>  </td>
       <td> 
-        <a class="btn btn-primary" href="http://localhost:3000/product/up_rev/<%=allReviews[i].product_id%>">Delete</a>
+
+      	<form method="POST" action="http://localhost:3000/product/up_rev/<%=allReviews[i].product_id%>">
+
+        <input type="submit" class="btn btn-primary" name="submit">
+
+        </form>
+
        </td>
       
       

@@ -159,8 +159,21 @@ router.get('/up_rev/:product_id' , function(req, res){
 
 	//res.send('up rev');
 	obj.userinfo = req.session.userinfo;
+	var pid = req.params.product_id;
 	
-	res.render('product/up_rev' , obj);
+	console.log(pid);
+
+	productModel.getReview(pid , function(result){
+
+		console.log(result);
+
+		obj.allReviews = result;
+		res.render('product/up_rev' , obj);
+
+	});
+
+
+	
 
 
 

@@ -193,7 +193,8 @@ router.post('/up_rev/:product_id' , function(req, res){
 
 	productModel.deleteReview(rev_id , function(status){
 
-		
+		var url_p = ''+pid;
+		res.redirect(url_p);
 
 
 	});

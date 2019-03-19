@@ -125,6 +125,11 @@ module.exports={
 		console.log(sql);
 	},
 	deleteReview: function(rev_id , callback){
+		var sql = "DELETE FROM `review` WHERE review_id="+rev_id+"";
+		console.log(sql);
+		db.execute(sql , callback);
+
+
 
 	}
 

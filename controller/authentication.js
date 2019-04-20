@@ -68,11 +68,17 @@ router.post('/' , function(req, res){
 			res.redirect('/dashboard');
 			}else{
 
-			obj.loginStatus = false;
-			console.log(result);
-			obj.validCheck = false;
-			res.render('authentication/login' , obj);
-
+			req.session.email = req.body.email;
+			obj.loginStatus = true;
+			console.log(result[0].u_id);
+			obj.validCheck = true;
+			req.session.userinfo = result;
+			console.log('login session');
+			console.log(req.session.userinfo);
+			obj.userinfo = req.session.userinfo;
+			console.log('redirecting to seller');
+			res.redirect('/seller');
+			
 			}
 
 			

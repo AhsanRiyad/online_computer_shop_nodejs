@@ -10,6 +10,14 @@ var authentication = require.main.require('./controller/authentication');
 var user = require.main.require('./controller/user');
 var order = require.main.require('./controller/order');
 
+//kaium Vai
+var login			= require('./controller/login');
+var seller			= require('./controller/seller');
+var logout			= require('./controller/logout');
+
+
+
+
 
 var app = express();
 var port = 3000;
@@ -51,6 +59,11 @@ app.use('/lib/js', express.static( __dirname + '/lib/js/'));
 app.use('/lib/css', express.static( __dirname + '/lib/css/'));
 
 
+
+//kaium vai
+app.use('/login', login);
+app.use('/seller', seller);
+app.use('/logout', logout);
 
 
 

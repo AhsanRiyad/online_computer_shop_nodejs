@@ -14,6 +14,10 @@ var order = require.main.require('./controller/order');
 var app = express();
 var port = 3000;
 
+
+
+
+
 var authenticationArray = ['/auth'];
 
 

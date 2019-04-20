@@ -54,7 +54,8 @@ router.post('/' , function(req, res){
 			res.render('authentication/login' , obj);
 		}
 		else{
-			
+
+			if(result[0].u_type == 'admin'){
 			req.session.email = req.body.email;
 			obj.loginStatus = true;
 			console.log(result[0].u_id);
@@ -65,6 +66,17 @@ router.post('/' , function(req, res){
 			obj.userinfo = req.session.userinfo;
 			console.log('redirecting to dashboard');
 			res.redirect('/dashboard');
+			}else{
+
+			obj.loginStatus = false;
+			console.log(result);
+			obj.validCheck = false;
+			res.render('authentication/login' , obj);
+
+			}
+
+			
+			
 		}
 
 

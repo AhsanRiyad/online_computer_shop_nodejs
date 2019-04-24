@@ -14,7 +14,7 @@ var homepage = "http://localhost:3000/";
 <!-- navigation bar and search bar starts -->
   <!-- fixed horizontal -->
   <div class="admin_navbar_horizontal bg-secondary justify-content-center d-flex align-items-center">
-    <p class="text-white h3">Good Morning, <%=userinfo[0].last_name%> </p>
+    <p class="text-white h3">Good Morning, <%=userinfo.LAST_NAME%> </p>
   </div>
 
 
@@ -27,7 +27,7 @@ var homepage = "http://localhost:3000/";
     </div>
 
     <%
-    if(userinfo[0].u_type == 'admin')
+    if(userinfo.U_TYPE == 'admin')
     {
     %>
 
@@ -106,7 +106,7 @@ var homepage = "http://localhost:3000/";
 
 
     <%
-    if(userinfo[0].u_type == 'user')
+    if(userinfo.U_TYPE == 'user')
     {
     %>
   <!-- <a class="text-light" href='http://localhost:3000/dashboard/profile'>

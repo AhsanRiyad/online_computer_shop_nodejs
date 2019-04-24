@@ -35,9 +35,9 @@ u_email varchar2(30) unique,
 u_mobile number(11) ,
 dob date ,
 u_status varchar2(30) ,
-first_name varchar2(50) NOT NULL,
-last_name varchar2(50) NOT NULL,
-u_type varchar2(50) NOT NULL,
+first_name varchar2(50) ,
+last_name varchar2(50) ,
+u_type varchar2(50) ,
 constraint  g_user_pk primary key(u_id)
 );
 
@@ -49,16 +49,16 @@ insert into user_table (u_id, u_password, u_address, u_email, u_mobile, dob, u_s
 -- products
 
 CREATE TABLE products (
-  product_id number(5) NOT NULL,
-  product_name varchar2(50) NOT NULL,
-  product_price number(5) NOT NULL,
-  product_avlble number(5) NOT NULL,
-  product_sell_price number(5) NOT NULL,
-  product_original_price number(5) NOT NULL,
-  category_id number(5) NOT NULL,
-  descriptions varchar2(100) NOT NULL,
-  category_name varchar2(50) NOT NULL,
-  sub_category varchar2(50) NOT NULL
+  product_id number(5) ,
+  product_name varchar2(50) ,
+  product_price number(5) ,
+  product_avlble number(5) ,
+  product_sell_price number(5) ,
+  product_original_price number(5) ,
+  category_id number(5) ,
+  descriptions varchar2(100) ,
+  category_name varchar2(50) ,
+  sub_category varchar2(50) 
 ) ;
 
 
@@ -98,9 +98,9 @@ sub_category) VALUES
 
 
 CREATE TABLE visit (
-  product_id number(5) NOT NULL,
+  product_id number(5) ,
   user_id number(5) ,
-  user_ip varchar2(50) NOT NULL,
+  user_ip varchar2(50) ,
   hit_count number(5) ,
   counter number(8) 
 ) ;
@@ -115,13 +115,13 @@ INSERT INTO visit (product_id, user_id, user_ip, hit_count, counter) VALUES
 
 
 CREATE TABLE cart (
-  cart_id number(5) NOT NULL,
-  cart_status varchar2(50) NOT NULL,
-  user_id number(5) NOT NULL,
-  g_u_type varchar2(20) NOT NULL,
-  order_id number(5) NOT NULL,
-  product_id number(5) NOT NULL,
-  quantity number(5) NOT NULL
+  cart_id number(5) ,
+  cart_status varchar2(50) ,
+  user_id number(5) ,
+  g_u_type varchar2(20) ,
+  order_id number(5) ,
+  product_id number(5) ,
+  quantity number(5) 
 );
 
 
@@ -131,8 +131,8 @@ CREATE TABLE cart (
 
 
 CREATE TABLE categories (
-  category_id number(5) NOT NULL,
-  category_name varchar2(50) NOT NULL
+  category_id number(5) ,
+  category_name varchar2(50) 
 );
 
 
@@ -141,9 +141,9 @@ CREATE TABLE categories (
 
 
 CREATE TABLE give_review (
-  review_id number(5) NOT NULL,
-  user_id number(5) NOT NULL,
-  seller_id number(5) NOT NULL
+  review_id number(5) ,
+  user_id number(5) ,
+  seller_id number(5) 
 );
 
 
@@ -151,10 +151,10 @@ CREATE TABLE give_review (
 
 
 CREATE TABLE order_includ_product (
-  order_id number(8) NOT NULL,
-  product_id number(8) NOT NULL,
-  qntity number(8) NOT NULL,
-  counter number(8) NOT NULL
+  order_id number(8) ,
+  product_id number(8) ,
+  qntity number(8) ,
+  counter number(8) 
 );
 
 
@@ -163,14 +163,14 @@ CREATE TABLE order_includ_product (
 
 
 CREATE TABLE promo (
-  promo_id number(5) NOT NULL,
-  promo_desc varchar2(50) NOT NULL,
-  Promo_expiry date NOT NULL,
-  promo_percentage number(20) NOT NULL,
-  promo_status varchar2(50) NOT NULL,
-  promo_limit number(5) NOT NULL,
-  promo_use_count number(5) NOT NULL,
-  a_id number(5) NOT NULL
+  promo_id number(5) ,
+  promo_desc varchar2(50) ,
+  Promo_expiry date ,
+  promo_percentage number(20) ,
+  promo_status varchar2(50) ,
+  promo_limit number(5) ,
+  promo_use_count number(5) ,
+  a_id number(5) 
 );
 
 
@@ -178,12 +178,12 @@ CREATE TABLE promo (
 
 
 CREATE TABLE review (
-  review_id number(5) NOT NULL,
-  review_text varchar(50) NOT NULL,
-  review_status varchar(50) NOT NULL,
-  review_date date NOT NULL,
-  product_id number(5) NOT NULL,
-  user_id number(8) NOT NULL
+  review_id number(5) ,
+  review_text varchar(50) ,
+  review_status varchar(50) ,
+  review_date date ,
+  product_id number(5) ,
+  user_id number(8) 
 );
 
 

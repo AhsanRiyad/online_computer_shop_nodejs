@@ -33,7 +33,6 @@ function sessionCheck(req, res, next){
 router.use(sessionCheck);
 
 
-
 var reg = ['/reg']
 
 router.get('/logout' , function(req, res){
@@ -61,7 +60,7 @@ router.post('/' , function(req, res){
 
 	
 	userModel.validate(user , function(result){
-		if(result.length<1){
+		if(result.rows.length<1){
 			obj.loginStatus = false;
 			console.log(result);
 			obj.validCheck = false;
@@ -71,9 +70,9 @@ router.post('/' , function(req, res){
 			
 			req.session.email = req.body.email;
 			obj.loginStatus = true;
-			console.log(result[0].u_id);
+			console.log(result.rows[0].U_ID);
 			obj.validCheck = true;
-			req.session.userinfo = result;
+			req.session.userinfo = result.rows[0];
 			console.log('login session');
 			console.log(req.session.userinfo);
 			obj.userinfo = req.session.userinfo;

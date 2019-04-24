@@ -27,6 +27,8 @@ router.get('/' , function(req, res){
 	obj.userinfo = req.session.userinfo;
 	res.render('dashboard/dashboard' , obj);
 	console.log('in the dashboard');
+	console.log(obj.userinfo.LAST_NAME);
+
 	// res.send('dashboard');
 
 })

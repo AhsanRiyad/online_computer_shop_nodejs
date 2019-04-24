@@ -10,26 +10,17 @@ var authentication = require.main.require('./controller/authentication');
 var user = require.main.require('./controller/user');
 var order = require.main.require('./controller/order');
 
-//kaium Vai
-var login			= require('./controller/login');
-var seller			= require('./controller/seller');
-var logout			= require('./controller/logout');
-
-
-
-
 
 var app = express();
 var port = 3000;
 
-
-
-
+var db = require.main.require('./model/db');
+var orcledb = require('oracledb');
 
 var authenticationArray = ['/auth'];
 
 
-var title = {
+var obj = {
 	title: 'index', 
 	justInProduct: [] , 
 	RecommendedProduct : [] , 
@@ -60,61 +51,54 @@ app.use('/lib/css', express.static( __dirname + '/lib/css/'));
 
 
 
-//kaium vai
-app.use('/login', login);
-app.use('/seller', seller);
-app.use('/logout', logout);
-
-
-
 //ROUTES
+app.get('*' , (req, res, next)=>{
+
+	if(req.session.email){
+
+		obj.userinfo = req.session.userinfo;
+		console.log(obj.userinfo[0].u_id);
+		productModel.cart_count(obj.userinfo[0].u_id , function(result){
+			console.log('cart count result');
+			console.log(result[0].cart_count);
+			obj.cart_count = result[0].cart_count;
+		});
+		obj.loginStatus = true;
+
+		}else{
+		obj.loginStatus = false;
+		}
+		next();
+
+});
+
+
+
 app.get('/' , (req,res)=>{
 
 	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-	
-
 	productModel.getRecommendedProduct(ip , function(result){
-
-		if(result.length<1){
-			console.log('recommended not found');
+		if(result.rows.length<1){
+			//console.log('recommended not found');
 		}else{
-			console.log('recommended block');
-			console.log(result);
-			title.RecommendedProduct = result;
+			//console.log('recommended block');
+			//console.log(result.rows.length);
+			//console.log(result.rows);
+			obj.RecommendedProduct = result.rows;
 		}
-
-		
-
-
 	});
-
-
 
 	productModel.getAllProduct(function(result){
-		title.justInProduct = result;
-		console.log(result);
+		obj.justInProduct = result.rows;
+		//console.log(result);
 
-		if(req.session.email){
-
-		title.userinfo = req.session.userinfo;
-		console.log(title.userinfo[0].u_id);
-		productModel.cart_count(title.userinfo[0].u_id , function(result){
-			console.log('cart count result');
-			console.log(result[0].cart_count);
-			title.cart_count = result[0].cart_count;
-		});
-		title.loginStatus = true;
-
-		}else{
-		title.loginStatus = false;
-		}
-		console.log(title);
-		res.render('index' , title);
+		
+		obj.loginStatus = false;
+		console.log(obj);
+		res.render('index' , obj);
 	});
 
-
-	
 
 }
 );

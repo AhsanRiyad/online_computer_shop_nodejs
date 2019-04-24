@@ -5,7 +5,6 @@ var homepage = 'http://localhost:3000';
 var signup = "http://localhost:3000/auth/reg";
 var signin = "http://localhost:3000/auth";
 var dashboard = "http://localhost:3000/dashboard";
-var dashboardSeller = "http://localhost:3000/seller";
 var signout = "http://localhost:3000/auth/logout";
 %>
 
@@ -137,7 +136,7 @@ var signout = "http://localhost:3000/auth/logout";
 
             <%
           }
-          else if(loginStatus==true && userinfo[0].u_type=='admin'){ 
+          else if(loginStatus==true){ 
           %>
 
           <a href="<%=dashboard%>" class="btn btn-info">Dashboard</a>
@@ -145,17 +144,7 @@ var signout = "http://localhost:3000/auth/logout";
 
           <%
         }
-          else if(loginStatus==true && userinfo[0].u_type=='seller'){ 
-          %>
-
-          <a href="<%=dashboardSeller%>" class="btn btn-info">Dashboard</a>
-
-
-          <%
-        }
         %>
-
-
 
 
       </div>

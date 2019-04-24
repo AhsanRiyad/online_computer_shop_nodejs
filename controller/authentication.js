@@ -15,6 +15,25 @@ var obj = {
 		
 }
 
+
+function sessionCheck(req, res, next){
+
+	// session
+	if(req.session.email){
+		obj.loginStatus = true;
+		}else{
+		obj.loginStatus = false;
+		}
+		console.log('middleware');
+		next();
+
+}
+
+//middleware
+router.use(sessionCheck);
+
+
+
 var reg = ['/reg']
 
 router.get('/logout' , function(req, res){
@@ -39,12 +58,7 @@ router.post('/' , function(req, res){
 		email: req.body.email,
 		password: req.body.password
 	};
-	// session
-	if(req.session.email){
-		obj.loginStatus = true;
-		}else{
-		obj.loginStatus = false;
-		}
+
 	
 	userModel.validate(user , function(result){
 		if(result.length<1){
@@ -54,8 +68,7 @@ router.post('/' , function(req, res){
 			res.render('authentication/login' , obj);
 		}
 		else{
-
-			if(result[0].u_type == 'admin'){
+			
 			req.session.email = req.body.email;
 			obj.loginStatus = true;
 			console.log(result[0].u_id);
@@ -66,23 +79,6 @@ router.post('/' , function(req, res){
 			obj.userinfo = req.session.userinfo;
 			console.log('redirecting to dashboard');
 			res.redirect('/dashboard');
-			}else{
-
-			req.session.email = req.body.email;
-			obj.loginStatus = true;
-			console.log(result[0].u_id);
-			obj.validCheck = true;
-			req.session.userinfo = result;
-			console.log('login session');
-			console.log(req.session.userinfo);
-			obj.userinfo = req.session.userinfo;
-			console.log('redirecting to seller');
-			res.redirect('/seller');
-			
-			}
-
-			
-			
 		}
 
 

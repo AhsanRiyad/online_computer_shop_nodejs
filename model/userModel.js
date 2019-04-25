@@ -30,11 +30,11 @@ module.exports={
 //to_char(sysdate , 'MM-DD-YYYY')
 
 
-		var  sql = "INSERT INTO user_table(u_password, u_email, u_mobile, dob, u_status, u_type, last_name) VALUES (:password,:email,:phone,to_char(sysdate , 'MM-DD-YYYY'),'valid',:type,:last_name)";
+		//var  sql = "INSERT INTO user_table(u_id , u_password, u_email, u_mobile, dob, u_status, u_type, last_name) VALUES (:password,:email,:phone,to_char( sysdate , 'MM-DD-YYYY'),'valid',:type,:last_name)";
 
 
 
-		INSERT INTO user_table(u_id ,  u_password, u_email, u_mobile, dob, u_status, u_type, last_name) VALUES (:password,:email,:phone,to_char(sysdate , 'MM-DD-YYYY'),'valid',:type,:last_name)
+		var sql = " INSERT INTO user_table(u_id ,  u_password, u_email, u_mobile, dob, u_status, u_type, last_name) VALUES (reg.nextval ,  :password,:email,:phone,to_char(sysdate),'valid',:type,:last_name)";
 
 
 		var params = {

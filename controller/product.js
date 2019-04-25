@@ -336,13 +336,21 @@ router.get('/productdetails/:pid' , function(req, res){
 	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
 	// session
-	
+	console.log('in the product details');
+
 	var pid = req.params.pid;
 	productModel.getProductDetails(pid , function(result){
 		console.log(result.rows);
 		obj.product = result.rows[0];
+		
+
+
 		// console.log(result[0].product_name);
 		// console.log(obj);
+		
+
+
+
 		obj.user_id_P = '';
 
 		console.log(obj.product.PRODUCT_NAME);	
@@ -365,7 +373,7 @@ router.get('/productdetails/:pid' , function(req, res){
 			//console.log(result[0].review_text);
 			obj.reviews = result.rows;
 
-			//res.render('product/productdetails' , obj);	
+			res.render('product/productdetails' , obj);	
 				console.log(obj);
 			
 

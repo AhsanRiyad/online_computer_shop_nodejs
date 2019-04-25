@@ -21,11 +21,33 @@ drop table review;
 
 drop sequence reg;
 
+drop sequence product_seq;
+
 
 
 
 
 -- user table
+
+
+
+create SEQUENCE reg
+INCREMENT by 1
+start with 1
+maxvalue 100
+NOCACHE
+NOCYCLE ;
+
+
+create SEQUENCE product_seq
+INCREMENT by 1
+start with 1
+maxvalue 100
+NOCACHE
+NOCYCLE ;
+
+
+
 
 
 
@@ -78,7 +100,7 @@ category_id,
 descriptions,
 category_name,
 sub_category) VALUES
-(1, 'Monitor LG', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg');
+(product_seq.nextval, 'Monitor LG', 33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg');
 
 
 
@@ -93,7 +115,7 @@ category_id,
 descriptions,
 category_name,
 sub_category) VALUES
-(2, 'Monitor Samsung ', 343, 34, 235, 2356, 346, 'useful for home', 'monitor', 'samsung');
+(product_seq.nextval, 'Monitor Samsung ', 343, 34, 235, 2356, 346, 'useful for home', 'monitor', 'samsung');
 
 
 
@@ -192,12 +214,6 @@ CREATE TABLE review (
 );
 
 
-create SEQUENCE reg
-INCREMENT by 1
-start with 1
-maxvalue 100
-NOCACHE
-NOCYCLE ;
 
 
 -- UPDATE user_table SET u_password= 'faerf' ,u_email= 'farefa' ,u_mobile= '5556644' WHERE u_id= 1;

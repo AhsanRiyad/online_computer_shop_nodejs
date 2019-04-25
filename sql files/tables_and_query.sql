@@ -19,7 +19,7 @@ drop table promo;
 
 drop table review;
 
-
+drop sequence reg;
 -- user table
 
 
@@ -187,6 +187,18 @@ CREATE TABLE review (
 );
 
 
+create SEQUENCE reg
+INCREMENT by 1
+start with 1
+maxvalue 100
+NOCACHE
+NOCYCLE ;
+
+
+-- UPDATE user_table SET u_password= 'faerf' ,u_email= 'farefa' ,u_mobile= '5556644' WHERE u_id= 1;
+
+
+-- UPDATE user_table SET u_password= :pass ,u_email= :email ,u_mobile= :mob WHERE u_id= :id;
 
 
 

@@ -135,9 +135,25 @@ module.exports={
 	addToCart: function(info , callback){
 		console.log('in the model');
 		//var sql = "INSERT INTO `cart`(  `user_id`,  `product_id` , `quantity`) VALUES ("+info.uid+","+info.pid+" , "+info.qntity+" ) where user_id not in ("+info.uid+") and product_id in ("+info.pid+")";
-		var sql = "call cart("+Number(info.pid)+" , "+Number(info.uid)+" , "+Number(info.qntity)+" );";
+		var sql1 = "call cart("+Number(info.pid)+" , "+Number(info.uid)+" , "+Number(info.qntity)+" );";
+		
+		var sql = 
+		`BEGIN
+		add_to_cart(:pid , :u_id , :qntity , :cart_count , :status);
+		END;`;
+
+		var params = {
+
+			u_id :  Number(info.uid) ,
+			pid :  Number(info.pid) ,
+			qntity :  Number(info.qntity) ,
+			status : { type: oracledb.VARCHAR , dir: oracledb.BIND_OUT } , 
+			cart_count : { type: oracledb.NUMBER , dir: oracledb.BIND_OUT } 
+
+		}
+
 		console.log(sql);
-		db.getResult(sql, callback);
+		db.getResult(sql, params ,  callback);
 		console.log(info);
 	},
 	cart_count: function(uid , callback){

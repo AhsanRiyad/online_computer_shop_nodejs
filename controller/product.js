@@ -342,10 +342,10 @@ router.get('/productdetails/:pid' , function(req, res){
 
 	var pid = req.params.pid;
 	productModel.getProductDetails(pid , function(result){
-		console.log(result.rows);
+		//console.log(result.rows);
 		obj.product = result.rows[0];
-		
-
+		console.log(obj.product.PRODUCT_ID);
+		//return;
 
 		// console.log(result[0].product_name);
 		// console.log(obj);
@@ -623,7 +623,13 @@ router.post('/addtocart' , function(req , res){
 	console.log(myinfo);
 
 	productModel.addToCart(myinfo , function(result){
-		if(result[1][0].status == 'added'){
+
+
+		console.log(result);
+		//return;
+
+
+		if(result.outBinds.status == 'added'){
 			console.log(result);
 			console.log('c_id');
 			console.log(result[2][0].cart_count);
@@ -636,8 +642,8 @@ router.post('/addtocart' , function(req , res){
 			res.json(myJSON);
 */
 			
-			var resJson = { 'status' : result[1][0].status ,
-			'cart_count' : result[2][0].cart_count }
+			var resJson = { 'status' : result.outBinds.status ,
+			'cart_count' : result.outBinds.cart_count }
 			//var myJSON = JSON.stringify(resJson);
 			console.log(resJson);
 			res.json(resJson);
@@ -650,8 +656,8 @@ router.post('/addtocart' , function(req , res){
 			console.log(myJSON);
 			res.json(myJSON);*/
 
-			var resJson = { 'status' : result[1][0].status ,
-			'cart_count' : result[2][0].cart_count }
+			var resJson = { 'status' : result.outBinds.status ,
+			'cart_count' : result.outBinds.cart_count }
 			//var myJSON = JSON.stringify(resJson);
 			console.log(resJson);
 			res.json(resJson);

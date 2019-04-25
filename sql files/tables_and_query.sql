@@ -19,6 +19,8 @@ drop table promo;
 
 drop table review;
 
+drop table p_include_cart;
+
 drop sequence reg_seq;
 
 drop sequence id;
@@ -232,7 +234,14 @@ CREATE TABLE cart (
   quantity number(5) 
 );
 
+-- p_include_cart
 
+CREATE TABLE p_include_cart (
+  cart_id number(5) ,
+  product_id number(5) ,
+  product_qntity number(5) ,
+  counter number(8) 
+) ;
 
 -- categories
 
@@ -294,6 +303,74 @@ CREATE TABLE review (
   user_id number(8) 
 );
 
+
+
+-- add_review procedure starts
+
+CREATE OR REPLACE PROCEDURE ADD_REVIEW(
+  uid IN review.user_id%type , 
+  pid IN review.product_id%type ,
+  rev_text IN  review.review_text%type,
+  status OUT VARCHAR)
+  
+  IS
+
+rev_id  review.review_id%type;
+
+BEGIN
+status := 'DONE'; 
+
+SELECT review_id INTO rev_id FROM review WHERE product_id = pid and user_id = uid;
+
+
+IF rev_id IS NOT NULL
+THEN
+
+UPDATE review SET review_text= rev_text , review_date= to_char(sysdate) WHERE product_id= pid AND user_id= uid;
+status := 'UPDATED';
+
+
+END IF;
+
+
+
+Exception
+when no_data_found THEN
+status := 'NO DATA FOUND , NEW_ADDED';
+
+
+INSERT INTO review(review_id ,  review_text, review_date, product_id, user_id) VALUES (review_seq.nextval ,  rev_text , to_char(sysdate) , pid , uid ) ; 
+
+
+
+when others THEN
+status := 'OTHERS EXCEPTION'; 
+
+END;
+
+
+
+-- add_review procedure ends
+
+
+-- test case
+
+/*declare
+status Varchar(50);
+rev_id number(2) ; 
+begin
+
+add_review(1,1, 'gae' , status);
+DBMS_OUTPUT.put_line(status);
+
+DBMS_OUTPUT.put_line('helllow');
+
+
+
+
+end;
+
+select review_id into rev_id from review;*/
 
 
 

@@ -32,7 +32,8 @@ oracledb.getConnection(
     
       sql,
       params,
-      { outFormat: oracledb.OBJECT }, 
+      //{ outFormat: oracledb.OBJECT }, this also works
+      { outFormat: oracledb.OBJECT , autoCommit: true },
       
       
       
@@ -68,7 +69,8 @@ oracledb.getConnection(
     
       sql,
       params,
-      { autoCommit: true },
+      //{ outFormat: oracledb.OBJECT }, this also works
+      { outFormat: oracledb.OBJECT , autoCommit: true },
    
       function(err, status) {
         if (err) {

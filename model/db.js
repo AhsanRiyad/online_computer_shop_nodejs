@@ -39,6 +39,7 @@ oracledb.getConnection(
           console.error(err.message);
           doRelease(connection);
           callback([]);
+          return;
         }
         
         //console.log(result.rows);   
@@ -72,6 +73,7 @@ oracledb.getConnection(
           console.error(err.message);
           doRelease(connection);
           callback(false);
+          return;
         }
         
         console.log(status);    

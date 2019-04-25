@@ -20,6 +20,11 @@ drop table promo;
 drop table review;
 
 drop sequence reg;
+
+
+
+
+
 -- user table
 
 
@@ -29,12 +34,12 @@ drop sequence reg;
 create table user_table
 (
 u_id number(5),
-u_password varchar2(15),
-u_address varchar2(30) ,
-u_email varchar2(30) unique,
+u_password varchar2(50),
+u_address varchar2(50) ,
+u_email varchar2(50) unique,
 u_mobile number(11) ,
 dob date ,
-u_status varchar2(30) ,
+u_status varchar2(50) ,
 first_name varchar2(50) ,
 last_name varchar2(50) ,
 u_type varchar2(50) ,
@@ -56,7 +61,7 @@ CREATE TABLE products (
   product_sell_price number(5) ,
   product_original_price number(5) ,
   category_id number(5) ,
-  descriptions varchar2(100) ,
+  descriptions varchar2(500) ,
   category_name varchar2(50) ,
   sub_category varchar2(50) 
 ) ;
@@ -118,7 +123,7 @@ CREATE TABLE cart (
   cart_id number(5) ,
   cart_status varchar2(50) ,
   user_id number(5) ,
-  g_u_type varchar2(20) ,
+  g_u_type varchar2(50) ,
   order_id number(5) ,
   product_id number(5) ,
   quantity number(5) 

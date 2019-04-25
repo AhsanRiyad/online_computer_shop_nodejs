@@ -18,7 +18,7 @@ module.exports={
 	},
 	registration: function(user, callback){
 
-		var dob = user.year+'-'+user.month+'-'+user.day;
+		var dob = user.year+'/'+user.month+'/'+user.day;
 		console.log(user.day);
 		console.log(user.month);
 		console.log(user.year);
@@ -34,14 +34,14 @@ module.exports={
 
 
 
-		var sql = " INSERT INTO user_table(u_id ,  u_password, u_email, u_mobile, dob, u_status, u_type, last_name) VALUES (reg.nextval ,  :password,:email,:phone,to_char(sysdate),'valid',:type,:last_name)";
+		var sql = " INSERT INTO user_table(u_id ,  u_password, u_email, u_mobile, dob, u_status, u_type, last_name) VALUES (reg.nextval ,  :password,:email,:phone,TO_DATE(:dob, 'yyyy/mm/dd'),'valid',:type,:last_name)";
 
 
 		var params = {
 			password : { val: user.password },
 			email : { val: user.email },
 			phone : { val: user.phone},
-			//dob : { val: dob },
+			dob : { val: dob },
 			type : { val: user.user_type },
 			last_name : { val: user.last_name },
 			//password : { val: user.password},

@@ -141,11 +141,21 @@ module.exports={
 	},
 	cart_count: function(uid , callback){
 		
-		var sql = "SELECT COUNT(*) as cart_count FROM `cart` WHERE user_id = "+uid+";"
-		console.log('cart_count');
-		console.log(sql);
+		var sql1 = "SELECT COUNT(*) as cart_count FROM `cart` WHERE user_id = "+uid+";"
 
-		db.getResult(sql , callback);
+
+		var sql = "SELECT COUNT(*) as cart_count  FROM cart WHERE user_id =:uuid";
+
+
+		console.log('cart_count'+' ' + uid);
+		console.log(sql);
+		var params = {
+			uuid : { 
+				val : uid 
+			}
+		};
+
+		db.getResult(sql ,  params ,  callback);
 
 
 	},

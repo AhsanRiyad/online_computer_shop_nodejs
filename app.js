@@ -57,11 +57,11 @@ app.get('*' , (req, res, next)=>{
 	if(req.session.email){
 
 		obj.userinfo = req.session.userinfo;
-		console.log(obj.userinfo[0].u_id);
-		productModel.cart_count(obj.userinfo[0].u_id , function(result){
+		console.log(obj.userinfo.U_ID);
+		productModel.cart_count(obj.userinfo.U_ID , function(result){
 			console.log('cart count result');
-			console.log(result[0].cart_count);
-			obj.cart_count = result[0].cart_count;
+			console.log(result);
+			obj.cart_count = result.rows[0].CART_COUNT;
 		});
 		obj.loginStatus = true;
 

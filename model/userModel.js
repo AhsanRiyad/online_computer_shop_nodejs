@@ -34,7 +34,7 @@ module.exports={
 
 
 
-		var sql = " INSERT INTO user_table(u_id ,  u_password, u_email, u_mobile, dob, u_status, u_type, last_name) VALUES (reg.nextval ,  :password,:email,:phone,TO_DATE(:dob, 'yyyy/mm/dd'),'valid',:type,:last_name)";
+		var sql = " INSERT INTO user_table(u_id ,  u_password, u_email, u_mobile, dob, u_status, u_type, last_name) VALUES (reg_seq.nextval ,  :password,:email,:phone,TO_DATE(:dob, 'yyyy/mm/dd'),'valid',:type,:last_name)";
 
 
 		var params = {

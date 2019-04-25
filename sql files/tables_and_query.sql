@@ -19,7 +19,7 @@ drop table promo;
 
 drop table review;
 
-drop sequence reg;
+drop sequence reg_seq;
 
 drop sequence product_seq;
 
@@ -31,7 +31,7 @@ drop sequence product_seq;
 
 
 
-create SEQUENCE reg
+create SEQUENCE reg_seq
 INCREMENT by 1
 start with 1
 maxvalue 100
@@ -47,7 +47,16 @@ NOCACHE
 NOCYCLE ;
 
 
+create SEQUENCE product_seq
+INCREMENT by 1
+start with 1
+maxvalue 100
+NOCACHE
+NOCYCLE ;
 
+/*
+select sequence_name ,   min_value , min_value , max_value , increment_by , last_number
+ from user_sequences;*/
 
 
 

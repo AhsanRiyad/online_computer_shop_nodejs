@@ -23,7 +23,7 @@ GRANT CONNECT, RESOURCE, DBA TO THE_USER;
 
 GRANT UNLIMITED TABLESPACE TO THE_USER;
 
-
+SET SERVEROUTPUT ON
 
 SQLPlus> connect sys as sysdba
 SQLPlus> alter pluggable database all open; 

@@ -1,6 +1,12 @@
 # for cloing a repo
 git clone PaseYourURLhere #don't forget to use SSH url to your convenient
 
+#for cloning all branch
+git fetch
+
+#if you have multiple remote 
+git checkout -b YourBranchName <name of remote>/YourBranchName
+
 
 # git status; to check if there is any update done
 git status
@@ -23,7 +29,24 @@ git push -u origin master # master is your branch name here, you need to use you
 git commit -am "write your comment here"
 
 
+# stash 
+git stash save YourStashName
 
+# stash list
+git stash list
+
+
+# to apply a stash
+git stash apply stash@{indexOfStash}
+
+# to apply changes and drop the stash
+git stash pop
+
+# to drop stash 
+git stash drop stash@{indexOfStash}
+
+#to clear all stash
+git stash clear
 
 # git pull; to keep our directory updated if not
 git pull origin master #master is your branch name here, you need to use your current branch name.
@@ -32,7 +55,7 @@ git pull origin master #master is your branch name here, you need to use your cu
 git revert PaseYourCommitNumberHere
 
 # git branch
-git branch # to check number of available branch (hosted locally)
+git branch -a # to check number of available branch (hosted locally)
 git branch -r # to check number of available branch (hosted remotely on a server)
 
 git branch BranchNameHere # to create a new branch
@@ -53,6 +76,8 @@ git branch origin --delete YourBranchName # to delete remote branch (remote mean
 git reset --hard PaseYourCommitNumberHere
 
 git push --force origin master #master is your branch name here, you need to use your current branch name.
+
+
 
 
 

@@ -94,7 +94,7 @@ app.get('/' , (req,res)=>{
 		//console.log(result);
 
 		
-		obj.loginStatus = false;
+		//obj.loginStatus = false;
 		console.log(obj);
 		res.render('index' , obj);
 	});

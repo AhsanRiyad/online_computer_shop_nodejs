@@ -6,11 +6,13 @@ module.exports={
 		
 		var sql = "select * from user_table where u_email=:email and u_password=:password ";
 
-		var params = {
+		/*var params = {
 			email: { val: user.email },
 			password: { val: user.password }
-		} 
+		} */
 
+		var params = [ user.email , user.password ];
+		
 
 		db.getResult(sql , params ,  callback);
 	},
@@ -25,7 +27,7 @@ module.exports={
 		var sql1 = "INSERT INTO `user`( `u_password`,  `u_email`, `u_mobile`, `dob`, `u_status`, `u_type`) VALUES ('"+user.password+"','"+user.email+"',"+user.phone+",'"+dob+"','"+user.user_type+"','valid', '"+dob+"')";
 		
 
-to_char(sysdate , 'MM-DD-YYYY')
+//to_char(sysdate , 'MM-DD-YYYY')
 
 
 		var  sql = "INSERT INTO user_table(u_password, u_email, u_mobile, dob, u_status, u_type, last_name) VALUES (:password,:email,:phone,to_char(sysdate , 'MM-DD-YYYY'),'valid',:type,:last_name)";

@@ -80,7 +80,7 @@ END;
 
 
 
--- cart procedure test
+-- cart procedure test starts
 DECLARE
 cart_count  number(10);
 status  VARCHAR(50);
@@ -90,3 +90,4 @@ add_to_cart(1 ,1 , 1 , cart_count , status);
 DBMS_OUTPUT.put_line(status);
 END;
 
+-- cart procedure test ends

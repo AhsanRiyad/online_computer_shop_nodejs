@@ -304,6 +304,10 @@ CREATE TABLE review (
 );
 
 
+-- UPDATE user_table SET u_password= 'faerf' ,u_email= 'farefa' ,u_mobile= '5556644' WHERE u_id= 1;
+
+
+-- UPDATE user_table SET u_password= :pass ,u_email= :email ,u_mobile= :mob WHERE u_id= :id;
 
 -- add_review procedure starts
 
@@ -374,10 +378,72 @@ select review_id into rev_id from review;*/
 
 
 
--- UPDATE user_table SET u_password= 'faerf' ,u_email= 'farefa' ,u_mobile= '5556644' WHERE u_id= 1;
 
 
--- UPDATE user_table SET u_password= :pass ,u_email= :email ,u_mobile= :mob WHERE u_id= :id;
+-- cart procedure starts
+
+
+CREATE OR REPLACE PROCEDURE add_to_cart(
+pid IN cart.PRODUCT_ID%type,
+uid IN cart.USER_ID%type,
+qnt IN cart.QUANTITY%type,
+cart_count OUT number,
+status OUT VARCHAR
+)
+IS
+c_id  cart.CART_ID%type;
+
+BEGIN
+
+SELECT cart_id  into c_id  FROM CART WHERE product_id = pid AND user_id = uid ;
+
+
+UPDATE p_include_cart SET product_qntity= product_qntity + qnt WHERE cart_id = c_id;
+UPDATE CART SET quantity= quantity + qnt WHERE cart_id = c_id;
+status :='updated';
+SELECT COUNT(*) into cart_count FROM cart WHERE user_id = uid;
+
+
+
+EXCEPTION
+when no_data_found THEN
+
+
+INSERT INTO cart(CART_ID ,  cart_status, user_id,  product_id , quantity ) VALUES ( ID.nextval , 'cart' , uid , pid , qnt); 
+select max(cart_id) into c_id from cart;
+INSERT INTO p_include_cart(cart_id, product_id, product_qntity) VALUES (c_id , pid , qnt);
+
+SELECT COUNT(*) into cart_count FROM cart WHERE user_id = uid;
+
+status:='added';
+
+when others THEN
+
+status:='others';
+
+
+END;
+
+-- cart procedure ends
+
+
+
+-- cart procedure test starts
+/*DECLARE
+cart_count  number(10);
+status  VARCHAR(50);
+
+BEGIN
+add_to_cart(1 ,1 , 1 , cart_count , status);
+DBMS_OUTPUT.put_line(status);
+END;*/
+
+-- cart procedure test ends
+
+
+
+
+
 
 
 

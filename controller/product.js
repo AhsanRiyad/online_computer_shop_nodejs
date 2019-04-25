@@ -356,8 +356,8 @@ router.get('/productdetails/:pid' , function(req, res){
 		console.log(obj.product.PRODUCT_NAME);	
 		if(req.session.userinfo){
 			obj.user_id = req.session.userinfo;
-			console.log(obj.user_id[0].u_id);
-			obj.user_id_P = obj.user_id[0].u_id;
+			console.log(obj.user_id.u_id);
+			obj.user_id_P = obj.user_id.u_id;
 
 		}
 		
@@ -372,9 +372,9 @@ router.get('/productdetails/:pid' , function(req, res){
 			console.log(result.length);
 			//console.log(result[0].review_text);
 			obj.reviews = result.rows;
-
+			console.log(obj);
 			res.render('product/productdetails' , obj);	
-				console.log(obj);
+				
 			
 
 

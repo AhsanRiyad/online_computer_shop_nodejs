@@ -1,0 +1,69 @@
+create SEQUENCE reg
+INCREMENT by 1
+start with 1
+maxvalue 100
+NOCACHE
+NOCYCLE
+
+create SEQUENCE id
+INCREMENT by 1
+start with 1
+maxvalue 1000
+NOCACHE
+NOCYCLE ;
+
+create SEQUENCE review_seq
+INCREMENT by 1
+start with 1
+maxvalue 100
+NOCACHE
+NOCYCLE ;
+
+
+
+
+UPDATE user_table SET u_password= 'faerf' ,u_email= 'farefa' ,u_mobile= '5556644' WHERE u_id= 1;
+
+
+UPDATE user_table SET u_password= :pass ,u_email= :email ,u_mobile= :mob WHERE u_id= :id;
+
+INSERT INTO promo(promo_id,promo_desc,  promo_percentage, promo_status, promo_limit, promo_use_count, a_id, Promo_expiry) VALUES (ID.nextval,'jdfdi' , 43 , 'kcmdsk' ,43,'' , 454 , TO_DATE('3-OCT-2002','DD-MON-YYYY') )
+
+INSERT INTO promo(promo_id,promo_desc,  promo_percentage, promo_status, promo_limit, promo_use_count, a_id, Promo_expiry) VALUES (ID.nextval,:promo_desc ,:promo_percentage,:promo_status,:promo_limit,'' , :uid,:promo_expiry )
+
+delete from promo where promo_id=8
+delete from promo where promo_id=:pid"
+
+UPDATE promo SET promo_desc='prity',promo_percentage=80 ,promo_status='bad',promo_limit=1,promo_use_count='' WHERE promo_id =9
+UPDATE promo SET promo_desc=:pr_desc,promo_percentage=:pr_percentage ,promo_status=:pr_status,promo_limit=:pr_limit,promo_use_count='' WHERE promo_id =:pid
+
+select product_name from products where product_name like 'Monitor LG'
+select product_name from products where product_name like :pname
+
+select product_name from products where product_name like 'Monitor LG' and category_name = 'monitor'
+select product_name from products where product_name like :pname and category_name = :cname
+
+select * from products where product_name like 'Monitor Samsung '
+select * from products where product_name like :pname
+
+select * from products where product_name like 'Monitor Samsung ' and category_name='monitor'
+select * from products where product_name like :pname and category_name=:cname
+
+select * from products where  category_name='monitor' and sub_category='lg'
+select * from products where  category_name=cname and sub_category=:scat
+
+INSERT INTO review(review_id,review_text, review_status, review_date,product_id, user_id) VALUES (review_seq.nextval,'jdfdknveghordi','kcdmcksjcmdsk', TO_DATE('3-OCT-2020','DD-MON-YYYY'),312,321 )
+
+DELETE FROM review WHERE review_id=3
+DELETE FROM review WHERE review_id=:rid
+
+
+create or replace trigger quantity
+before update or insert on products
+for each row
+begin
+if :new.qoh < 0 then
+raise_application_error(-2345,'Quantity on hand can not be negative');
+end if;
+end;
+

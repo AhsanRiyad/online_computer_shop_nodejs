@@ -97,6 +97,8 @@ router.post('/review' , function(req, res){
 
 	}
 
+	console.log(revInfo);
+
 	productModel.addReview(revInfo , function(result){
 		console.log(result);
 		console.log(revInfo);
@@ -356,8 +358,15 @@ router.get('/productdetails/:pid' , function(req, res){
 		console.log(obj.product.PRODUCT_NAME);	
 		if(req.session.userinfo){
 			obj.user_id = req.session.userinfo;
-			console.log(obj.user_id.u_id);
-			obj.user_id_P = obj.user_id.u_id;
+			console.log(obj.user_id.U_ID);
+			obj.user_id_P = obj.user_id.U_ID;
+
+
+			console.log('inside product details');
+			//console.log(obj.user_id.U_ID);
+
+
+			// return;
 
 		}
 		

@@ -1,5 +1,4 @@
 var db = require('./db');
-var oracledb = require('oracledb');
 
 module.exports={	
 	addPromo: function(promo , callback){
@@ -7,7 +6,10 @@ module.exports={
 		console.log(promo.promo_desc);
 
 		console.log('user id promo block ' + promo.u_id);
-		var sql = "INSERT INTO `promo`(`promo_desc`,  `promo_percentage`, `promo_status`, `promo_limit`, `promo_use_count`, `a_id` , `Promo_expiry`) VALUES ('"+promo.promo_desc+"' , "+promo.promo_percentage+" , '"+promo.promo_status+"' ,"+promo.promo_limit+","+promo.promo_use_count+" , "+promo.user_id+" , '"+promo.promo_expiry+"' )";
+		// var sql = "INSERT INTO `promo`(`promo_desc`,  `promo_percentage`, `promo_status`, `promo_limit`, `promo_use_count`, `a_id` , `Promo_expiry`) VALUES ('"+promo.promo_desc+"' , "+promo.promo_percentage+" , '"+promo.promo_status+"' ,"+promo.promo_limit+","+promo.promo_use_count+" , "+promo.user_id+" , '"+promo.promo_expiry+"' )";
+		
+		// var sql = "INSERT INTO `promo`(`promo_desc`,  `promo_percentage`, `promo_status`, `promo_limit`, `promo_use_count`, `a_id` , `Promo_expiry`) VALUES ('"+promo.promo_desc+"' , "+promo.promo_percentage+" , '"+promo.promo_status+"' ,"+promo.promo_limit+","+promo.promo_use_count+" , "+promo.user_id+" , '"+promo.promo_expiry+"' )";
+        var sql="INSERT INTO promo(promo_id,promo_desc,  promo_percentage, promo_status, promo_limit, promo_use_count, a_id, Promo_expiry) VALUES (ID.nextval,:pr_desc ,:pr_percentage,:pr_status,:pr_limit,'' , :uid,:pr_expiry )";
 
 		console.log(sql);
 
@@ -23,7 +25,8 @@ module.exports={
 
 	},
 	deletePromo: function(promoid , callback){
-		var sql = "DELETE FROM `promo` WHERE promo_id="+promoid+"";
+		// var sql = "DELETE FROM `promo` WHERE promo_id="+promoid+"";
+	var sql="	delete from promo where promo_id=:pid";
 		
 		console.log(sql);
 
@@ -31,13 +34,14 @@ module.exports={
 
 	},
 	updatePromo: function(promo , callback){
-		sql = "UPDATE `promo` SET `promo_desc`='"+promo.promo_desc+"',`promo_percentage`="+promo.promo_percentage+" ,`promo_status`='"+promo.promo_status+"',`promo_limit`="+promo.promo_limit+",`promo_use_count`="+promo.promo_use_count+" WHERE promo_id = "+promo.promo_id+"";
+		// sql = "UPDATE `promo` SET `promo_desc`='"+promo.promo_desc+"',`promo_percentage`="+promo.promo_percentage+" ,`promo_status`='"+promo.promo_status+"',`promo_limit`="+promo.promo_limit+",`promo_use_count`="+promo.promo_use_count+" WHERE promo_id = "+promo.promo_id+"";
+		var sql="UPDATE promo SET promo_desc=:pr_desc,promo_percentage=:pr_percentage ,promo_status=:pr_status,promo_limit=:pr_limit,promo_use_count='' WHERE promo_id =:pid";
 		db.execute(sql , callback);
 
 		console.log(sql);
 	},
 	getAllProduct: function(callback){
-		sql = "select * from products where rownum <= 12";
+		sql = "select * from products";
 		var params = {} ; 
 		db.getResult(sql , params,  callback);
 	},
@@ -47,9 +51,11 @@ module.exports={
 		var catName = searchDetails.category ;
 
 		if(catName == 'all'){
-			var sql = "select `product_name` from products where product_name like '"+pname+"' ";
+			// var sql = "select `product_name` from products where product_name like '"+pname+"' ";
+			var sql="select product_name from products where product_name like :pname";
 		}else{
-			var sql = "select `product_name` from products where product_name like '"+pname+"' and category_name = '"+catName+"' ";
+			// var sql = "select `product_name` from products where product_name like '"+pname+"' and category_name = '"+catName+"' ";
+		  var sql="select product_name from products where product_name like :pname and category_name = :cname";
 		}
 
 		
@@ -65,13 +71,14 @@ module.exports={
 
 
 		if(catValue=='all'){
-			var sql = "select * from products where product_name like '"+pname+"' ";
+			// var sql = "select * from products where product_name like '"+pname+"' ";
+			var sql="select * from products where product_name like :pname";
 		
 
 		}else{
 
-			var sql = "select * from products where product_name like '"+pname+"' and category_name='"+catValue+"' ";
-		
+			// var sql = "select * from products where product_name like '"+pname+"' and category_name='"+catValue+"' ";
+		   var sql="select * from products where product_name like :pname and category_name=:cname";
 
 		}
 
@@ -169,28 +176,10 @@ module.exports={
 	},
 	addReview: function(revInfo , callback){
 
-		var sql1 = "call review("+revInfo.user_id+" , "+revInfo.productId+" , '"+revInfo.rev_text+"' , '"+revInfo.rev_date+"');";
-
-		var sql = 
-		`begin
-		 add_review(:u_id , :pid , :rev_text, :status); 
-		 end;` ;
-
-
-		var params = {
-
-			u_id : { val : revInfo.user_id },
-			pid : { val : revInfo.productId },
-			rev_text : { val : revInfo.rev_text },
-			status : { type: oracledb.VARCHAR , dir: oracledb.BIND_OUT }
-
-		}
-
-
+		var sql = "call review("+revInfo.user_id+" , "+revInfo.productId+" , '"+revInfo.rev_text+"' , '"+revInfo.rev_date+"');";
 		console.log(sql);
-		console.log(params);
 
-		db.execute(sql , params ,  callback);
+		db.getResult(sql , callback);
 
 
 	},
@@ -202,7 +191,8 @@ module.exports={
 		console.log(sql);
 	},
 	deleteReview: function(rev_id , callback){
-		var sql = "DELETE FROM `review` WHERE review_id="+rev_id+"";
+		// var sql = "DELETE FROM `review` WHERE review_id="+rev_id+"";"
+		var sql = "DELETE FROM review WHERE review_id=:rid";
 		console.log(sql);
 		db.execute(sql , callback);
 
@@ -211,7 +201,8 @@ module.exports={
 	},
 	searchCat: function(catName , subCat , callback){
 
-		var sql = "select * from products where  category_name='"+catName+"' and sub_category='"+subCat+"' " ; 
+		// var sql = "select * from products where  category_name='"+catName+"' and sub_category='"+subCat+"' " ;
+		var sql="select * from products where  category_name=cname and sub_category=:scat ";
 
 		console.log(sql);
 

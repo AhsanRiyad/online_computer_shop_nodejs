@@ -1,3 +1,5 @@
+-- mysql 
+
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `review`(IN `uid` INT, IN `pid` INT, IN `rev_text` VARCHAR(50), IN `rev_date` DATE)
 BEGIN
@@ -29,6 +31,14 @@ DELIMITER ;
 
 
 
+
+
+
+
+-- oracle
+
+-- add_review starts
+
 CREATE OR REPLACE PROCEDURE ADD_REVIEW(
 	uid IN review.user_id%type , 
 	pid IN review.product_id%type ,
@@ -40,7 +50,7 @@ CREATE OR REPLACE PROCEDURE ADD_REVIEW(
 rev_id  review.review_id%type;
 
 BEGIN
-status := 'done'; 
+status := 'DONE'; 
 
 SELECT review_id INTO rev_id FROM review WHERE product_id = pid and user_id = uid;
 
@@ -49,7 +59,7 @@ IF rev_id IS NOT NULL
 THEN
 
 UPDATE review SET review_text= rev_text , review_date= to_char(sysdate) WHERE product_id= pid AND user_id= uid;
-status := 'updated';
+status := 'UPDATED';
 
 
 END IF;
@@ -58,15 +68,15 @@ END IF;
 
 Exception
 when no_data_found THEN
-status := 'no data found , new_added';
+status := 'NO DATA FOUND , NEW_ADDED';
 
 
-INSERT INTO review( review_text, review_date, product_id, user_id) VALUES (rev_text , to_char(sysdate) , pid , uid ) ; 
+INSERT INTO review(review_id ,  review_text, review_date, product_id, user_id) VALUES (review_seq.nextval ,  rev_text , to_char(sysdate) , pid , uid ) ; 
 
 
 
 when others THEN
-status := 'others exception'; 
+status := 'OTHERS EXCEPTION'; 
 
 END;
 
@@ -90,3 +100,6 @@ DBMS_OUTPUT.put_line('helllow');
 end;
 
 select review_id into rev_id from review;
+
+
+-- add_review ends

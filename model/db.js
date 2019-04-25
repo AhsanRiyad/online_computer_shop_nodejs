@@ -34,6 +34,8 @@ oracledb.getConnection(
       params,
       { outFormat: oracledb.OBJECT }, 
       
+      
+      
       function(err, result) {
         if (err) {
           console.error(err.message);

@@ -1,4 +1,5 @@
 var db = require('./db');
+var oracledb = require('oracledb');
 
 module.exports={	
 	validate: function(user, callback){

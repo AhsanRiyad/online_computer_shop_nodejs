@@ -229,7 +229,7 @@ router.get('/viewproducts' , function(req, res){
 	productModel.getAllProduct(function(result){
 		console.log(result);
 		
-		obj.allProducts = result;
+		obj.allProducts = result.rows;
 
 		res.render('product/viewproducts' , obj);
 
@@ -254,7 +254,7 @@ router.get('/up_rev/:product_id' , function(req, res){
 
 		console.log(result);
 
-		obj.allReviews = result;
+		obj.allReviews = result.rows;
 		res.render('product/up_rev' , obj);
 
 	});

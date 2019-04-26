@@ -22,16 +22,16 @@
 
     <tr>
       <th scope="row"> <%=i+1%> </th>
-      <td> <%=allReviews[i].review_text%> </td>
-      <td> <%=allReviews[i].review_date%>  </td>
-      <td> <%=allReviews[i].user_id%>  </td>
+      <td> <%=allReviews[i].REVIEW_TEXT%> </td>
+      <td> <%=allReviews[i].REVIEW_DATE%>  </td>
+      <td> <%=allReviews[i].USER_ID%>  </td>
       <td> 
 
-      	<form method="POST" action="http://localhost:3000/product/up_rev/<%=allReviews[i].product_id%>">
+      	<form method="POST" action="http://localhost:3000/product/up_rev/<%=allReviews[i].PRODUCT_ID%>">
 
-      	<input type="text" name="rev_id" hidden="true" value="<%=allReviews[i].review_id%>">
+      	<input type="text" name="rev_id" hidden="true" value="<%=allReviews[i].REVIEW_ID%>">
 
-        <input type="submit" class="btn btn-primary" name="submit">
+        <input type="submit" class="btn btn-primary" name="submit" value="delete">
 
         </form>
 

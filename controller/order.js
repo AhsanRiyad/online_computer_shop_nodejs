@@ -29,43 +29,55 @@ router.get('/' , function(req, res){
 });
 
 
-
 router.get('/confirm' , function(req, res){
+	// session
+	if(req.session.email){
+		obj.loginStatus = true;
 
-	obj.loginStatus = true;
+		obj.user_id = req.session.userinfo;
+		console.log(obj.user_id.U_ID);
+		obj.user_id_P = obj.user_id.U_ID;
 
-	obj.user_id = req.session.userinfo;
-		console.log(obj.user_id[0].u_id);
-		obj.user_id_P = obj.user_id[0].u_id;
-
-	productModel.cart_count(obj.user_id_P , function(result){
+		productModel.cart_count(obj.user_id_P , function(result){
 			console.log('cart count result');
-			console.log(result[0].cart_count);
-			obj.cart_count = result[0].cart_count;
+			console.log(result.rows[0].CART_COUNT);
+			
+			console.log(result.rows[0].CART_COUNT);
+			obj.cart_count = result.rows[0].CART_COUNT;
 		});
 
 
-
-	productModel.getCartProduct(obj.user_id_P , function(result){
-			console.log(result[0]);
-			console.log(result[0]);
-			console.log(result[1][0].total);
-
-
-
-			obj.products = result[0];
-			obj.total = result[1][0].total;
+		productModel.getCartProduct(obj.user_id_P , function(result){
+			console.log(result.rows);
+			//return;
 			
 
+			obj.products = result.rows;
+			productModel.getCartTotal(obj.user_id_P , function(result){
+			console.log(result.rows[0].TOTAL);
+			//return;
+			
+			
+
+
+			
+			obj.total = result.rows[0].TOTAL;
+			res.render('Order/confirm_order' , obj);
+
+		});
+
+
 		});
 
 
 
+	}else{
+		obj.loginStatus = false;
+		res.redirect('/auth');
+	}
 
-
-	res.render('Order/confirm_order' , obj);
+	
 });
-
 
 
 

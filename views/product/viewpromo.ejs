@@ -23,14 +23,14 @@
 	<% for(var i=0; i< promoArray.length; i++) {%>	
 
     <tr>
-      <th scope="row"> <%= promoArray[i].promo_id %> </th>
-      <td> <%= promoArray[i].promo_desc %> </td>
-      <td> <%= promoArray[i].promo_percentage %>% </td>
-      <td><%= promoArray[i].promo_limit %></td>
+      <th scope="row"> <%= promoArray[i].PROMO_ID %> </th>
+      <td> <%= promoArray[i].PROMO_DESC %> </td>
+      <td> <%= promoArray[i].PROMO_PERCENTAGE %>% </td>
+      <td><%= promoArray[i].PROMO_LIMIT %></td>
       <td> 
         <form action="http://localhost:3000/product/deletepromo" method="post"> 
         
-        <input type="text" name="promoIdDelete" hidden="true" value="<%= promoArray[i].promo_id %>">
+        <input type="text" name="promoIdDelete" hidden="true" value="<%= promoArray[i].PROMO_ID %>">
 
         <input type="submit" value="Delete" class="btn btn-danger">
 
@@ -40,7 +40,7 @@
 
       <td> 
 
-        <a class="btn btn-primary" href="http://localhost:3000/product/updatepromo/<%=promoArray[i].promo_id%>">Update</a>
+        <a class="btn btn-primary" href="http://localhost:3000/product/updatepromo/<%=promoArray[i].PROMO_ID%>">Update</a>
 
     </td>
 

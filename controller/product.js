@@ -513,7 +513,7 @@ router.post('/addpromo' , function(req, res){
 				obj.msg = 'added';
 				console.log('add promo block ');
 				console.log(promo);
-				
+
 				res.render('product/addpromo' , obj);
 			}
 			else{
@@ -538,9 +538,13 @@ router.get('/viewpromo' , function(req, res){
 
 	obj.userinfo = req.session.userinfo;
 	productModel.getPromo(function(result){
+
+
 		console.log('view promo section');
-		console.log(result.length);
-		obj.promoArray = result;
+		console.log(result);
+		//return;
+		console.log(result.rows.length);
+		obj.promoArray = result.rows;
 		console.log(obj.promoArray);
 		res.render('product/viewpromo' , obj);
 	});
@@ -561,8 +565,8 @@ router.post('/deletepromo' , function(req, res){
 		
 		productModel.getPromo(function(result){
 			console.log('view promo section');
-			console.log(result.length);
-			obj.promoArray = result;
+			console.log(result.rows.length);
+			obj.promoArray = result.rows;
 			console.log(obj.promoArray);
 			res.render('product/viewpromo' , obj);
 		});

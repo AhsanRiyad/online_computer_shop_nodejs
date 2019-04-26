@@ -34,15 +34,15 @@ module.exports={
 	getPromo: function(callback){
 		var sql = "select * from promo";
 		console.log(sql);
-		db.getResult(sql, callback);
+		db.getResult(sql,[] ,callback);
 
 	},
 	deletePromo: function(promoid , callback){
-		var sql = "DELETE FROM `promo` WHERE promo_id="+promoid+"";
-		
+		//var sql = "DELETE FROM `promo` WHERE promo_id="+promoid+"";
+		var sql="	delete from promo where promo_id=:pid";
 		console.log(sql);
 
-		db.execute(sql, callback);
+		db.execute(sql, [promoid] ,  callback);
 
 	},
 	updatePromo: function(promo , callback){

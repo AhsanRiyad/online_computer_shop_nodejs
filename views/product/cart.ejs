@@ -12,11 +12,11 @@
 	if(products.length < 1){%>
 
 	<div class="jumbotron jumbotron-fluid mt-4 bg-info text-white">
-  <div class="container">
-    <h1 class="display-4">Your cart is empty</h1>
-    <p class="lead">Please add some product to the cart and come here again</p>
-  </div>
-</div>
+		<div class="container">
+			<h1 class="display-4">Your cart is empty</h1>
+			<p class="lead">Please add some product to the cart and come here again</p>
+		</div>
+	</div>
 
 
 	<%
@@ -31,7 +31,8 @@
 			<th scope="col">Name</th>
 			<th scope="col">Short Description</th>
 			<th scope="col">Quantity</th>
-			<th scope="col">Price</th>
+			<th scope="col">Unit Price</th>
+			<th scope="col">Total</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -53,10 +54,11 @@
 
 			<th scope="row"><%= i+1 %></th>				
 
-			<td><%=products[i].product_name%></td>
-			<td>php echo $row['descripition']; </td>
-			<td><%=products[i].product_qntity%> </td>
-			<td><%=products[i].product_price%></td>
+			<td><%=products[i].PRODUCT_NAME%></td>
+			<td><%=products[i].DESCRIPTIONS%> </td>
+			<td><%=products[i].PRODUCT_QNTITY%> </td>
+			<td><%=products[i].PRODUCT_PRICE%></td>
+			<td><%=products[i].TOTAL%></td>
 
 		</tr>
 

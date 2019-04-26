@@ -177,15 +177,30 @@ module.exports={
 
 	},
 	getCartProduct: function(uid , callback){
-		var sql = "call cartPage("+uid+")";
-		console.log(sql);
+		//var sql = "call cartPage("+uid+")";
+		
 
-		db.getResult(sql , callback);
+		var sql = "select p.product_id , pr.product_name , pr.product_price , p.product_qntity , pr.DESCRIPTIONS ,  (pr.product_price*p.product_qntity) as total from cart c , p_include_cart p , products pr where p.cart_id = c.cart_id and p.product_id = pr.product_id and c.user_id = :uuid";
+		console.log(sql);
+		var params = [ uid ];
+
+		db.getResult(sql , params , callback);
+
+	},
+	getCartTotal: function(uid , callback){
+		//var sql = "call cartPage("+uid+")";
+		
+
+		var sql = "select SUM(pr.product_price*p.product_qntity) as total from cart c , p_include_cart p , products pr where p.cart_id = c.cart_id and p.product_id = pr.product_id and c.user_id = :uuid";
+		console.log(sql);
+		var params = [ uid ];
+
+		db.getResult(sql , params , callback);
 
 	},
 	addReview: function(revInfo , callback){
 
-		var sql1 = "call review("+revInfo.user_id+" , "+revInfo.productId+" , '"+revInfo.rev_text+"' , '"+revInfo.rev_date+"');";
+		//var sql1 = "call review("+revInfo.user_id+" , "+revInfo.productId+" , '"+revInfo.rev_text+"' , '"+revInfo.rev_date+"');";
 
 		var sql = 
 		`begin

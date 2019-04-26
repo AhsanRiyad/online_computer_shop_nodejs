@@ -18,10 +18,10 @@ var obj = {
 function sessionCheck(req , res , next){
 	if(req.session.email){
 		obj.loginStatus = true;
-		}else{
+	}else{
 		obj.loginStatus = false;
-		}
-		next();
+	}
+	next();
 }
 
 router.use(sessionCheck);
@@ -41,9 +41,9 @@ router.get('/autosearch/:id/:cat' , function(req, res){
 	if(req.session.email){
 		obj.userinfo = req.session.userinfo;
 		obj.loginStatus = true;
-		}else{
+	}else{
 		obj.loginStatus = false;
-		}
+	}
 
 
 	var searchDetails = {
@@ -114,7 +114,7 @@ router.post('/review' , function(req, res){
 router.get('/search' , function(req , res){
 
 	
-		console.log('parameters');
+	console.log('parameters');
 	var searchQuery = req.query.searchbox;
 	console.log(req.query.searchbox);
 	console.log(req.query.catValue);
@@ -276,55 +276,52 @@ router.post('/up_rev/:product_id' , function(req, res){
 
 
 
-
-
-
-
-
-
-
-
 router.get('/cart' , function(req, res){
 	// session
 	if(req.session.email){
 		obj.loginStatus = true;
 
 		obj.user_id = req.session.userinfo;
-		console.log(obj.user_id[0].u_id);
-		obj.user_id_P = obj.user_id[0].u_id;
+		console.log(obj.user_id.U_ID);
+		obj.user_id_P = obj.user_id.U_ID;
 
 		productModel.cart_count(obj.user_id_P , function(result){
 			console.log('cart count result');
-			console.log(result[0].cart_count);
-			obj.cart_count = result[0].cart_count;
+			console.log(result.rows[0].CART_COUNT);
+			
+			console.log(result.rows[0].CART_COUNT);
+			obj.cart_count = result.rows[0].CART_COUNT;
 		});
 
 
 		productModel.getCartProduct(obj.user_id_P , function(result){
-			console.log(result[0]);
-			console.log(result[0]);
-			console.log(result[1][0].total);
+			console.log(result.rows);
+			//return;
+			
+
+			obj.products = result.rows;
+			productModel.getCartTotal(obj.user_id_P , function(result){
+			console.log(result.rows[0].TOTAL);
+			//return;
+			
+			
 
 
-
-			obj.products = result[0];
-			obj.total = result[1][0].total;
+			
+			obj.total = result.rows[0].TOTAL;
 			res.render('product/cart' , obj);
 
 		});
 
 
+		});
 
-		}else{
+
+
+	}else{
 		obj.loginStatus = false;
 		res.redirect('/auth');
-		}
-
-
-
-
-
-
+	}
 
 	
 });
@@ -383,7 +380,7 @@ router.get('/productdetails/:pid' , function(req, res){
 			obj.reviews = result.rows;
 			console.log(obj);
 			res.render('product/productdetails' , obj);	
-				
+
 			
 
 
@@ -396,9 +393,9 @@ router.get('/productdetails/:pid' , function(req, res){
 	console.log(ip);
 
 	var visitTable = {
-				ip: ip,
-				productid : pid
-			}
+		ip: ip,
+		productid : pid
+	}
 
 	productModel.recommendProduct(visitTable , function(result){
 
@@ -560,13 +557,13 @@ router.get('/updatepromo/:promoid' , function(req, res){
 		res.redirect('/auth');
 	}else{
 
-	obj.userinfo = req.session.userinfo;
-	var promoid = req.params.promoid;
-	console.log(promoid);
-	obj.promoid = promoid;
+		obj.userinfo = req.session.userinfo;
+		var promoid = req.params.promoid;
+		console.log(promoid);
+		obj.promoid = promoid;
 
-	res.render('product/updatepromo' , obj);
-}
+		res.render('product/updatepromo' , obj);
+	}
 
 });
 
@@ -640,7 +637,7 @@ router.post('/addtocart' , function(req , res){
 			var myJSON = JSON.stringify(resJson);
 			console.log(myJSON);
 			res.json(myJSON);
-*/
+			*/
 			
 			var resJson = { 'status' : result.outBinds.status ,
 			'cart_count' : result.outBinds.cart_count }

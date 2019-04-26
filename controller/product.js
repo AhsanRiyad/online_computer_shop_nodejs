@@ -138,15 +138,20 @@ router.get('/search' , function(req , res){
 	
 	productModel.searchPage(searchDetails , function(result){
 
-		if(result.length<1){
-			console.log(result);
-			obj.searchResult = result;
+
+		console.log('back to controller');
+		console.log(result.rows);
+		//return;
+
+		if(result.rows.length<1){
+			console.log(result.rows);
+			obj.searchResult = result.rows;
 			console.log(obj);
 			res.render('product/productSearch' , obj);
 		}
 		else{
-			console.log(result);
-			obj.searchResult = result;
+			console.log(result.rows);
+			obj.searchResult = result.rows;
 			console.log(obj);
 			res.render('product/productSearch' , obj);
 		}

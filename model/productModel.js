@@ -79,31 +79,38 @@ module.exports={
 
 	},
 	searchPage: function(searchDetails , callback){
-		console.log('search model '+ searchDetails.searchText);
-		var pname ='%' + searchDetails.searchText + '%' ; 
-		var catValue  = searchDetails.category ; 
+		console.log('product model submit button '+ searchDetails.searchText);
+		//var pname ='%' + searchDetails.searchText + '%' ;
+		var pname =searchDetails.searchText ;
+
+		var catName = searchDetails.category ;
+		console.log('p'+' '+pname , 'c'+' '+catName );
+		if(catName == 'all'){
+			//var sql1 = "select `product_name` from products where product_name like '"+pname+"' ";
+
+			//var sql="select product_name from products where product_name like :pname";
+
+			var sql= "select * from products where regexp_like(product_name, :pname , 'i')";
 
 
-		if(catValue=='all'){
-			var sql = "select * from products where product_name like '"+pname+"' ";
-		
+			db.getResult(sql, [pname] ,callback);
 
 		}else{
+			//var sql1 = "select `product_name` from products where product_name like '"+pname+"' and category_name = '"+catName+"' ";
 
-			var sql = "select * from products where product_name like '"+pname+"' and category_name='"+catValue+"' ";
-		
+			//var sql="select product_name from products where product_name like :pname and category_name = :cname";
+
+
+			var sql= "select * from products where regexp_like(product_name, :pname , 'i') and regexp_like(category_name, :cname, 'i')";
+
+			db.getResult(sql, [ pname , catName ] ,callback);
+
 
 		}
 
+
 		
-
-		console.log('search page');
-		console.log(searchDetails);
 		console.log(sql);
-
-
-
-		db.getResult(sql, callback);
 
 	},
 	getProductDetails: function(productid, callback){

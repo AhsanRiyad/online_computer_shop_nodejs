@@ -1,0 +1,11 @@
+create or replace trigger neg_price
+before update or insert on products
+for each row
+begin
+if :new.product_price < 0 then
+raise_application_error(-2345,'Price can not be negative');
+end if;
+end;
+
+INSERT INTO products (product_id,product_name,product_price,product_avlble,product_sell_price,product_original_price,category_id,descriptions,category_name,sub_category) VALUES
+(PRODUCT_SEQ.nextval, 'Monitor LG', -33, 33, 33, 34, 34, 'useful for home', 'monitor', 'lg');

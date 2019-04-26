@@ -99,13 +99,19 @@ module.exports={
 		/*var sql = "INSERT INTO `user`( `u_password`,  `u_email`, `u_mobile`, `u_status`, `u_type`, `last_name`) VALUES ('"+user.user_password+"','"+user.user_email+"',"+user.user_mobile+",'"+user.user_type+"','"+user.user_status+"', '"+user.user_name+"')" ; */
 
 
-		var sql =  "UPDATE `user` SET `u_password`='"+user.user_password+"',`u_email`='"+user.user_email+"',`u_mobile`="+user.user_mobile+",`u_status`='"+user.user_status+"',`u_type`='"+user.user_type+"',`last_name`='"+user.user_name+"' WHERE `u_id`="+user.user_id+"" ; 
+		//var sql =  "UPDATE `user_table` SET `u_password`='"+user.user_password+"',`u_email`='"+user.user_email+"',`u_mobile`="+user.user_mobile+",`u_status`='"+user.user_status+"',`u_type`='"+user.user_type+"',`last_name`='"+user.user_name+"' WHERE `u_id`="+user.user_id+"" ; 
+		var sql =  "UPDATE user_table SET u_password=:pass,u_email=:email,u_mobile=:mobile,u_status=:status,u_type=:type,last_name=:last_name WHERE u_id=:uuid" ;
 
+
+		var params = 
+		[
+		user.user_password , user.user_email , user.user_mobile , user.user_status , user.user_type , user.user_name , user.user_id
+		];
 
 
 		console.log(sql);
 		//callback(false);
-		db.execute(sql , callback);
+		db.execute(sql , params , callback);
 
 
 

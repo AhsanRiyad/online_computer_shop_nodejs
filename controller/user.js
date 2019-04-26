@@ -158,6 +158,10 @@ router.post('/updateuser/:userid' , function(req, res){
 			user_id: u_id
 		}
 
+
+		console.log(userFormInfo);
+		//return;
+
 		userModel.updateuser(userFormInfo , function(status){
 			if(status){
 				obj.msg = 'added';

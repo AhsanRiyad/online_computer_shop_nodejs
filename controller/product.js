@@ -499,16 +499,21 @@ router.post('/addpromo' , function(req, res){
 			promo_status: req.body.promo_status,
 			promo_limit: req.body.promo_limit,
 			promo_use_count: req.body.promo_use_count,
-			user_id: req.session.userinfo[0].u_id,
+			user_id: req.session.userinfo.U_ID,
 			promo_expiry: req.body.Promo_expiry
 		}
+
+		console.log(promo);
+
+
+		//return;
 
 		productModel.addPromo(promo , function(status){
 			if(status){
 				obj.msg = 'added';
 				console.log('add promo block ');
 				console.log(promo);
-
+				
 				res.render('product/addpromo' , obj);
 			}
 			else{

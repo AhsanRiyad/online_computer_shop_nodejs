@@ -7,19 +7,34 @@ module.exports={
 		console.log(promo.promo_desc);
 
 		console.log('user id promo block ' + promo.u_id);
-		var sql = "INSERT INTO `promo`(`promo_desc`,  `promo_percentage`, `promo_status`, `promo_limit`, `promo_use_count`, `a_id` , `Promo_expiry`) VALUES ('"+promo.promo_desc+"' , "+promo.promo_percentage+" , '"+promo.promo_status+"' ,"+promo.promo_limit+","+promo.promo_use_count+" , "+promo.user_id+" , '"+promo.promo_expiry+"' )";
+		var sql1 = "INSERT INTO `promo`(`promo_desc`,  `promo_percentage`, `promo_status`, `promo_limit`, `promo_use_count`, `a_id` , `Promo_expiry`) VALUES ('"+promo.promo_desc+"' , "+promo.promo_percentage+" , '"+promo.promo_status+"' ,"+promo.promo_limit+","+promo.promo_use_count+" , "+promo.user_id+" , '"+promo.promo_expiry+"' )";
+
+
+        var sql="INSERT INTO promo(promo_id,promo_desc,  promo_percentage, promo_status, promo_limit, promo_use_count, a_id, Promo_expiry) VALUES (ID.nextval,:pr_desc ,:pr_percentage,:pr_status,:pr_limit, :use_count  ,  :uuid, TO_DATE(:pr_expiry, 'yyyy/mm/dd'))";
+
+        var params = 
+        {
+         pr_desc:  promo.promo_desc, 
+         pr_percentage: promo.promo_percentage,
+         pr_status: promo.promo_status,
+         pr_limit: promo.promo_limit,
+         use_count : promo.promo_use_count,
+         uuid :  promo.user_id,
+         pr_expiry : promo.promo_expiry
+
+		};
 
 		console.log(sql);
 
-		db.execute(sql , callback);
+		db.execute(sql , params ,callback);
 
 
 
 	},
 	getPromo: function(callback){
-	var sql = "select * from promo";
-	console.log(sql);
-	db.getResult(sql, callback);
+		var sql = "select * from promo";
+		console.log(sql);
+		db.getResult(sql, callback);
 
 	},
 	deletePromo: function(promoid , callback){
@@ -231,8 +246,8 @@ module.exports={
 
 		var sql = 
 		`begin
-		 add_review(:u_id , :pid , :rev_text, :status); 
-		 end;` ;
+		add_review(:u_id , :pid , :rev_text, :status); 
+		end;` ;
 
 
 		var params = {

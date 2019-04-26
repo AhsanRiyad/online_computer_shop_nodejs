@@ -82,8 +82,10 @@ router.get('/viewuser' , function(req, res){
 	obj.userinfo = req.session.userinfo;
 	userModel.viewUser(function(result){
 		console.log('view user section');
-		console.log(result.length);
-		obj.userArray = result;
+		console.log(result.rows);
+
+		// return;
+		obj.userArray = result.rows;
 		console.log(obj.userArray);
 		res.render('user/viewuser' , obj);
 	});

@@ -25,16 +25,16 @@
 	<% for(var i=0; i< userArray.length; i++) {%>	
 
     <tr>
-      <th scope="row"> <%= userArray[i].u_id %> </th>
-      <td> <%= userArray[i].last_name %> </td>
-      <td> <%= userArray[i].u_mobile %> </td>
-      <td> <%= userArray[i].u_email %> </td>
-      <td><%= userArray[i].u_type %></td>
-      <td><%= userArray[i].u_status %></td>
+      <th scope="row"> <%= userArray[i].U_ID %> </th>
+      <td> <%= userArray[i].LAST_NAME %> </td>
+      <td> <%= userArray[i].U_MOBILE %> </td>
+      <td> <%= userArray[i].U_EMAIL %> </td>
+      <td><%= userArray[i].U_TYPE %></td>
+      <td><%= userArray[i].U_STATUS %></td>
       <td> 
         <form action="http://localhost:3000/user/deleteuser" method="post"> 
         
-       <input type="text" name="userIdDelete" hidden="true" value="<%= userArray[i].u_id %>">
+       <input type="text" name="userIdDelete" hidden="true" value="<%= userArray[i].U_ID %>">
 
         <input type="submit" value="Delete" class="btn btn-danger">
 
@@ -44,7 +44,7 @@
 
       <td> 
 
-        <a class="btn btn-primary" href="http://localhost:3000/user/updateuser/<%=userArray[i].u_id%>">Update</a>
+        <a class="btn btn-primary" href="http://localhost:3000/user/updateuser/<%=userArray[i].U_ID%>">Update</a>
 
     </td>
 

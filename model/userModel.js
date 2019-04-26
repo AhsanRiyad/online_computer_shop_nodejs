@@ -79,17 +79,18 @@ module.exports={
 
 	}, 
 	viewUser: function(callback){
-		var sql = "select * from user";
+		var sql = "select * from user_table";
 		console.log(sql);
 		//callback([]);
-		db.getResult(sql , callback);
+		db.getResult(sql , [] ,  callback);
 	},
 	deleteuser: function(userid , callback){
-		var sql = "DELETE FROM `user` WHERE u_id="+userid+"";
+		// var sql = "DELETE FROM user_table WHERE u_id="+userid+"";
+		var sql = "DELETE FROM user_table WHERE u_id=:uuid";
 		
 		console.log(sql);
 
-		db.execute(sql, callback);
+		db.execute(sql, [userid] ,callback);
 
 	},
 	updateuser: function(user , callback){

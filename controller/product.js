@@ -102,6 +102,7 @@ router.post('/review' , function(req, res){
 	productModel.addReview(revInfo , function(result){
 		console.log(result);
 		console.log(revInfo);
+		//return;
 		var url_p = 'productdetails/'+req.body.productid;
 		res.redirect(url_p);
 	});
@@ -339,7 +340,8 @@ router.get('/productdetails/:pid' , function(req, res){
 
 	var pid = req.params.pid;
 	productModel.getProductDetails(pid , function(result){
-		//console.log(result.rows);
+		console.log(result.rows);
+		//return;
 		obj.product = result.rows[0];
 		console.log(obj.product.PRODUCT_ID);
 		//return;

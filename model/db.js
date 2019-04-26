@@ -69,7 +69,7 @@ oracledb.getConnection(
     
       sql,
       params,
-      //{ outFormat: oracledb.OBJECT }, this also works
+      //{ autoCommit: true }, //this also works
       { outFormat: oracledb.OBJECT , autoCommit: true },
    
       function(err, status) {

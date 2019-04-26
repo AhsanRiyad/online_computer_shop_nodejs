@@ -220,7 +220,7 @@ module.exports={
 
 		console.log(sql);
 		console.log(params);
-
+		//return;
 		db.execute(sql , params ,  callback);
 
 

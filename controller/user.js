@@ -17,7 +17,7 @@ var obj = {
 
 router.get('/addUser' , function(req, res){
 
-
+	//obj.msg = 'none';
 	if(req.session.email == null){
 		res.redirect('/auth');
 	}else{
@@ -50,6 +50,10 @@ router.post('/addUser' , function(req, res){
 			user_type: req.body.user_type,
 			user_status: req.body.user_status
 		}
+
+
+		console.log(userFormInfo);
+		//return;
 
 		userModel.addUser(userFormInfo , function(status){
 			if(status){

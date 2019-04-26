@@ -71,9 +71,16 @@ module.exports={
 
 
 
+		var sql="INSERT INTO user_table(u_id, u_password,  u_email, u_mobile,u_status,u_type,last_name) VALUES (REG.nextval,:password,:email,:phone,:status,:type,:lastname)";
+
+		var params = 
+		[
+		user.user_password , user.user_email , user.user_mobile , user.user_status , user.user_type ,  user.user_name
+		];
+
 		console.log(sql);
 
-		db.execute(sql , callback);
+		db.execute(sql , params ,callback);
 
 
 

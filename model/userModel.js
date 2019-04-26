@@ -61,8 +61,15 @@ module.exports={
 
 	},
 	updateprofile: function(user , callback){
-		var sql = "UPDATE `user` SET `u_password`= '"+user.password+"' ,`u_email`= '"+user.email+"' ,`u_mobile`= "+user.mobile+" WHERE u_id= "+user.u_id+"";
-		db.execute(sql , callback);
+		var sql1 = "UPDATE `user` SET `u_password`= '"+user.password+"' ,`u_email`= '"+user.email+"' ,`u_mobile`= "+user.mobile+" WHERE u_id= "+user.u_id+"";
+
+		var sql = "UPDATE user_table SET u_password=:password ,u_email=:email ,u_mobile=:phone WHERE u_id=:uuid";
+		var params = 
+		[
+		user.password , user.email , user.mobile , user.u_id 
+		]
+
+		db.execute(sql , params ,  callback);
 	},
 	addUser: function(user , callback){
 

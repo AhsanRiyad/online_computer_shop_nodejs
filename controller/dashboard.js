@@ -55,14 +55,19 @@ router.post('/updateprofile' , function(req, res){
 	var updateInfo = {
 		'name': 'riyad',
 		'msg' : 'profileUpdated',
-		'user_id': obj.userinfo[0].u_id
+		'user_id': obj.userinfo.U_ID
 	}
-	myinfo.u_id = obj.userinfo[0].u_id;
-	console.log(myinfoJson);
+
+
+	myinfo.u_id = obj.userinfo.U_ID;
+	//console.log(myinfoJson);
+	console.log(myinfo);
+	//console.log(updateInfo);
+	//return;
 	//jsontest.user_id = obj.userinfo[0].u_id;
 	
 	userModel.updateprofile(myinfo , function(status){
-		if(status==true){
+		if(status!=false){
 			myinfo.status = true;
 			res.json(myinfo);
 			//res.json(JSON.parse(myinfoJson));

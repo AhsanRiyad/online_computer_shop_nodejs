@@ -76,7 +76,7 @@ console.log(profilePic);
 					<div class="col-10 mt-3 border border-right-0 border-top-0 border-left-0 pl-0 pr-0"> 
 						<small id='idSmallEmailChangeDashboard'  class="text-danger "> <span>Enter new email or Keep it same</span> <span onclick="removeDisabled(this)" id="idSpanEmailChangeDashboard" class="small_button">Change</span></small>
 
-						<input id="idInputEmailUpdateProfileDashboard" class="d-block border-0 w-100 pb-1 mr-0 pl-2" placeholder="Type Your Email Here" disabled="" type="text" value="<%=userinfo[0].u_email%>" >
+						<input id="idInputEmailUpdateProfileDashboard" class="d-block border-0 w-100 pb-1 mr-0 pl-2" placeholder="Type Your Email Here" disabled="" type="text" value="<%=userinfo.U_EMAIL%>" >
 
 					</div>
 
@@ -91,7 +91,7 @@ console.log(profilePic);
 					<div class="col-10 mt-3 border border-right-0 border-top-0 border-left-0 pl-0 pr-0"> 
 						<small class="text-danger ppp"><span>Enter new Number or Keep it same</span> <span id="changeMobileSpan" class="small_button" onclick="removeDisabled(this);">Change</span></small>
 
-						<input id="idInputMobileUpdateProfileDashboard" class="d-block border-0 w-100 pb-1 mr-0 pl-2" placeholder="Type Your Email Here" disabled="true" type="text" value="<%=userinfo[0].u_mobile%>" >
+						<input id="idInputMobileUpdateProfileDashboard" class="d-block border-0 w-100 pb-1 mr-0 pl-2" placeholder="Type Your Email Here" disabled="true" type="text" value="<%=userinfo.U_MOBILE%>" >
 
 					</div>
 

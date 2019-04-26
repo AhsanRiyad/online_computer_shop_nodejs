@@ -631,7 +631,7 @@ router.post('/addtocart' , function(req , res){
 		if(result.outBinds.status == 'added'){
 			console.log(result);
 			console.log('c_id');
-			console.log(result[2][0].cart_count);
+			//console.log(result[2][0].cart_count);
 			console.log('added');
 
 			/*var resJson = { status : result[1][0].status ,

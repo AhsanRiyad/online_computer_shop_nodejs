@@ -1,4 +1,5 @@
 var db = require('./db');
+var oracledb = require('oracledb');
 
 
 
@@ -7,9 +8,21 @@ module.exports = {
 
 		console.log('order model');
 
-		var sql = "call order_t("+orderInfo.uid+" , '"+orderInfo.order_date+"' , '"+orderInfo.payment_method+"');";
+		var sql1 = "call order_t("+orderInfo.uid+" , '"+orderInfo.order_date+"' , '"+orderInfo.payment_method+"');";
 
-		db.getResult(sql, callback);
+		var sql = 
+		`begin
+		make_order(:uuid , :payment_method , :status);
+		end;
+		`;
+
+		var params = {
+			uuid : orderInfo.uid,
+			payment_method : orderInfo.payment_method,
+			status : { type: oracledb.VARCHAR , dir: oracledb.BIND_OUT } 
+		}
+
+		db.getResult(sql, params , callback);
 
 		console.log(sql);
 

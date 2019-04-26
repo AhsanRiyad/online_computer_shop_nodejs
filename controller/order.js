@@ -17,11 +17,11 @@ var obj = {
 
 
 router.get('*', function(req, res, next){
-		if(req.session.email != null){
-			next();
-		}else{
-			res.redirect('/auth');
-		}
+	if(req.session.email != null){
+		next();
+	}else{
+		res.redirect('/auth');
+	}
 });
 
 router.get('/' , function(req, res){
@@ -54,7 +54,7 @@ router.get('/confirm' , function(req, res){
 
 			obj.products = result.rows;
 			productModel.getCartTotal(obj.user_id_P , function(result){
-			console.log(result.rows[0].TOTAL);
+				console.log(result.rows[0].TOTAL);
 			//return;
 			
 			
@@ -83,53 +83,87 @@ router.get('/confirm' , function(req, res){
 
 router.post('/confirm' , function(req, res){
 
-	obj.loginStatus = true;
+	if(req.session.email){
+		obj.loginStatus = true;
 
-	obj.user_id = req.session.userinfo;
-		console.log(obj.user_id[0].u_id);
-		obj.user_id_P = obj.user_id[0].u_id;
+		obj.user_id = req.session.userinfo;
+		console.log(obj.user_id.U_ID);
+		obj.user_id_P = obj.user_id.U_ID;
 
-	productModel.cart_count(obj.user_id_P , function(result){
+		productModel.cart_count(obj.user_id_P , function(result){
 			console.log('cart count result');
-			console.log(result[0].cart_count);
-			obj.cart_count = result[0].cart_count;
+			console.log(result.rows[0].CART_COUNT);
+			
+			console.log(result.rows[0].CART_COUNT);
+			obj.cart_count = result.rows[0].CART_COUNT;
 		});
 
 
-
-	productModel.getCartProduct(obj.user_id_P , function(result){
-			console.log(result[0]);
-			console.log(result[0]);
-			console.log(result[1][0].total);
-
-
-
-			obj.products = result[0];
-			obj.total = result[1][0].total;
+		productModel.getCartProduct(obj.user_id_P , function(result){
+			console.log(result.rows);
+			//return;
 			
 
+			obj.products = result.rows;
+			productModel.getCartTotal(obj.user_id_P , function(result){
+				console.log(result.rows[0].TOTAL);
+			//return;
+			
+			
+
+
+			
+			obj.total = result.rows[0].TOTAL;
+			//res.render('Order/confirm_order' , obj);
+
+
+
+
+			var d = new Date();
+			var day = d.getDate();
+			var month = d.getMonth();
+			var year  = d.getFullYear();
+
+			var date = year+'-'+month+'-'+day;
+
+			var orderInfo = {
+				uid: obj.user_id_P ,
+				order_date: date ,
+				payment_method : req.body.optradio 
+			}
+
+			orderModel.confirmOrder(orderInfo , function(result){
+
+
+				console.log(result);
+				//return;
+				res.render('Order/done' , obj);
+
+			});
+
+
+
+
+
+
+
+
+		});
+
+
 		});
 
 
 
-	var d = new Date();
-	var day = d.getDate();
-	var month = d.getMonth();
-	var year  = d.getFullYear();
-
-	var date = year+'-'+month+'-'+day;
-
-	var orderInfo = {
-		uid: obj.user_id_P ,
-		order_date: date ,
-		payment_method : req.body.optradio 
+	}else{
+		obj.loginStatus = false;
+		res.redirect('/auth');
 	}
 
-		orderModel.confirmOrder(orderInfo , function(result){
-			
-			res.render('Order/done' , obj);
 
-		});
+
+
+	
 
 
 		//console.log(orderInfo);
@@ -137,7 +171,7 @@ router.post('/confirm' , function(req, res){
 
 
 
-	
+
 
 	//res.render('Order/confirm_order' , obj);
 });

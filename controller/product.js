@@ -614,8 +614,12 @@ router.post('/updatepromo/:promoid' , function(req, res){
 			promo_status: req.body.promo_status,
 			promo_limit: req.body.promo_limit,
 			promo_use_count: req.body.promo_use_count,
-			promo_id: promoid
+			promo_id: promoid,
+			promo_expiry: req.body.promo_expiry,
 		}
+
+		console.log(promo);
+		//return;
 
 		productModel.updatePromo(promo , function(status){
 			if(status){

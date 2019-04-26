@@ -46,8 +46,28 @@ module.exports={
 
 	},
 	updatePromo: function(promo , callback){
-		sql = "UPDATE `promo` SET `promo_desc`='"+promo.promo_desc+"',`promo_percentage`="+promo.promo_percentage+" ,`promo_status`='"+promo.promo_status+"',`promo_limit`="+promo.promo_limit+",`promo_use_count`="+promo.promo_use_count+" WHERE promo_id = "+promo.promo_id+"";
-		db.execute(sql , callback);
+		sql1 = "UPDATE `promo` SET `promo_desc`='"+promo.promo_desc+"',`promo_percentage`="+promo.promo_percentage+" ,`promo_status`='"+promo.promo_status+"',`promo_limit`="+promo.promo_limit+",`promo_use_count`="+promo.promo_use_count+"  WHERE promo_id = "+promo.promo_id+"";
+
+		var sql="UPDATE promo SET promo_desc=:pr_desc,promo_percentage=:pr_percentage ,promo_status=:pr_status,promo_limit=:pr_limit,promo_use_count=:use_count , Promo_expiry= TO_DATE(:pr_expiry, 'yyyy/mm/dd') WHERE promo_id =:pid";
+
+
+		var params = 
+        {
+         pr_desc:  promo.promo_desc, 
+         pr_percentage: promo.promo_percentage,
+         pr_status: promo.promo_status,
+         pr_limit: promo.promo_limit,
+         use_count : promo.promo_use_count,
+         pr_expiry : promo.promo_expiry,
+         pid: promo.promo_id
+
+		};
+
+		console.log(params);
+		//return;
+
+
+		db.execute(sql , params , callback);
 
 		console.log(sql);
 	},

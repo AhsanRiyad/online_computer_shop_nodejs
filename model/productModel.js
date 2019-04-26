@@ -242,12 +242,15 @@ module.exports={
 	},
 	searchCat: function(catName , subCat , callback){
 
-		var sql = "select * from products where  category_name='"+catName+"' and sub_category='"+subCat+"' " ; 
+		//var sql = "select * from products where  category_name='"+catName+"' and sub_category='"+subCat+"' " ; 
+
+		var sql="select * from products where  category_name=:cname and sub_category=:scat ";
+
 
 		console.log(sql);
 
 
-		db.getResult(sql , callback);
+		db.getResult(sql , [ catName , subCat ] ,callback);
 
 
 

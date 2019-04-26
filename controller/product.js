@@ -168,17 +168,20 @@ router.get('/category/:catName/:subCat' , function(req , res){
 	
 	productModel.searchCat(catName , subCat , function(result){
 
-		if(result.length<1){
-			console.log(result);
-			obj.searchResult = result;
+		console.log(result.rows);
+		//return;
+
+		if(result.rows.length<1){
+			console.log(result.rows);
+			obj.searchResult = result.rows;
 			obj.catName = catName ; 
 			obj.subCat = subCat;
 			console.log(obj);
 			res.render('product/product_cat' , obj);
 		}
 		else{
-			console.log(result);
-			obj.searchResult = result;
+			console.log(result.rows);
+			obj.searchResult = result.rows;
 			obj.subCat = subCat;
 			
 			obj.catName = catName ; 

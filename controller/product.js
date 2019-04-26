@@ -52,19 +52,26 @@ router.get('/autosearch/:id/:cat' , function(req, res){
 	}
 
 	productModel.searchProduct(searchDetails , function(result){
-		if(result.length<1){
+
+		console.log('search product controller');
+		console.log(result.rows);
+
+		//return;
+
+
+		if(result.rows.length<1){
 			console.log('no result');
 			res.jsonp({ user: 'no match'  });
 		}else{
 			console.log('result found');
-			console.log(result);
+			console.log(result.rows);
 
 			var abc = {};
-			for(var i = 0 ; i<result.length; i++)
+			for(var i = 0 ; i<result.rows.length; i++)
 			{
 				console.log(i);
-				console.log(result[i].product_name);
-				abc['product'+i] = result[i].product_name;
+				console.log(result.rows[i].PRODUCT_NAME);
+				abc['product'+i] = result.rows[i].PRODUCT_NAME;
 			}
 
 

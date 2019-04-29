@@ -79,31 +79,6 @@ router.post('/addUser' , function(req, res){
 	
 });
 
-// trigger controller starts
-
-router.get('/view_trigger' , function(req, res){
-
-	if(req.session.email == null){
-		res.redirect('/auth');
-	}
-
-	obj.userinfo = req.session.userinfo;
-	userModel.viewTrigger(function(result){
-		console.log('view user section');
-		console.log(result.rows);
-
-		// return;
-		//obj.userArray = result.rows;
-		obj.triggerArray = result.rows;
-		console.log(obj.triggerArray);
-		res.render('user/viewTrigger' , obj);
-	});
-	
-});
-
-
-
-// trigger controller ends
 
 
 router.get('/viewuser' , function(req, res){
@@ -127,6 +102,38 @@ router.get('/viewuser' , function(req, res){
 
 
 
+// trigger controller starts
+
+router.get('/view_trigger' , function(req, res){
+
+	if(req.session.email == null){
+		res.redirect('/auth');
+	}
+
+	obj.userinfo = req.session.userinfo;
+	userModel.viewTrigger(function(result){
+		console.log('view user section');
+		console.log(result.rows);
+
+		// return;
+		//obj.userArray = result.rows;
+		obj.trigger_status = req.session.trigger_status; 
+		obj.triggerArray = result.rows;
+		console.log(obj.triggerArray);
+		res.render('user/viewTrigger' , obj);
+	});
+	
+});
+
+
+
+// trigger controller ends
+
+
+
+
+
+
 router.post('/enableTrigger' , function(req, res){
 	console.log('enableTrigger');
 	
@@ -135,6 +142,7 @@ router.post('/enableTrigger' , function(req, res){
 	userModel.enableTrigger(triggerName , function(status){
 		
 		userModel.viewUser(function(result){
+			req.session.trigger_status = 'Trigger Enabled';
 			res.redirect('/user/view_trigger');
 		});
 
@@ -156,6 +164,7 @@ router.post('/disableTrigger' , function(req, res){
 	userModel.disableTrigger(triggerName , function(status){
 		
 		userModel.viewUser(function(result){
+			req.session.trigger_status = 'Trigger Disabled';
 			res.redirect('/user/view_trigger');
 		});
 

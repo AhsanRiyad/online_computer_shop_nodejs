@@ -18,7 +18,7 @@ create or replace trigger neg_price
     for each row
     begin
     if :new.quantity <= 0 then
-    raise_application_error(-2345,'quantity can not be negative');
+    raise_application_error(-20201,'quantity can not be negative');
     end if;
     end;
 /
@@ -79,11 +79,11 @@ create or replace trigger restrict_adminaw
     for each row
     begin
     if inserting then
-    raise_application_error(-2025,'not inserted');
+    raise_application_error(-20202,'not inserted');
     elsif updating then
-    raise_application_error(-2026,'not updated');
+    raise_application_error(-20203,'not updated');
     elsif deleting then
-    raise_application_error(-2027,'not deleted');
+    raise_application_error(-20204,'not deleted');
     end if;
     end;
 

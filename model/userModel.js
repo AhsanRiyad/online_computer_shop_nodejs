@@ -176,11 +176,11 @@ module.exports={
 		:status := disable_trigger(:triggerName); 
 		END;`;*/
 
-		var sql = "BEGIN custome_trigger_p(:tn , :st , :et); END;"
+		var sql1 = "BEGIN custome_trigger_p(:tn , :st , :et); END;"
 		//console.log(triggerName);
 		//return ;
 
-		var sql = "create or replace trigger custom_trigger before insert or update or delete ON "+table_name+" begin if to_char(sysdate , 'HH24') not between '"+start_time+"' and '"+end_time+"' then raise_application_error(-2345  , 'restricted' ); end if; end custom_trigger;";
+		var sql = "create or replace trigger custom_trigger before insert or update or delete ON "+table_name+" begin if to_char(sysdate , 'HH24') not between '"+start_time+"' and '"+end_time+"' then raise_application_error(-20205  , 'restricted' ); end if; end custom_trigger;";
 
 		var params = 
 		{ 
@@ -198,7 +198,7 @@ module.exports={
 		var sql = "select * from userinfo_log";
 
 		db.execute(sql , [] , callback);
-		
+
 	}
 
 }

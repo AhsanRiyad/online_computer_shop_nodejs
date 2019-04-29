@@ -75,6 +75,8 @@ router.post('/updateprofile' , function(req, res){
 		}
 		else{
 			console.log('failed');
+			myinfo.status = false;
+			res.json(myinfo);
 		}
 	});
 

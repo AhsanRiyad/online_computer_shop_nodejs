@@ -26,7 +26,7 @@ oracledb.getConnection(
   function(err, connection) {
     if (err) {
       console.error(err.message);
-      return;
+      //return;
     }
     connection.execute(
     
@@ -42,7 +42,7 @@ oracledb.getConnection(
           console.error(err.message);
           doRelease(connection);
           callback([]);
-          return;
+          //return;
         }
         
         //console.log(result.rows);   
@@ -63,9 +63,12 @@ oracledb.getConnection(
   function(err, connection) {
     if (err) {
       console.error(err.message);
-      return;
+      //return;
     }
-    connection.execute(
+
+    try{
+
+      connection.execute(
     
       sql,
       params,
@@ -75,15 +78,41 @@ oracledb.getConnection(
       function(err, status) {
         if (err) {
           console.error(err.message);
+          console.error(err);
           doRelease(connection);
           callback(false);
-          return;
-        }
-        
-        console.log(status);    
+          //return;
+        }else{
+          console.log(status);    
         doRelease(connection);
         callback(status);
+        }
+        
+        
       });
+
+
+
+
+    }catch (err) {
+
+
+      console.log('error block try catch');
+
+      //callback(false);
+
+
+
+    } finally{
+
+      console.log('finally block try catch');
+
+      //callback(false);
+
+    }
+
+
+    
   });
 }
 

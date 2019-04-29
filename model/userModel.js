@@ -179,6 +179,15 @@ module.exports={
 		var sql = "BEGIN custome_trigger_p(:tn , :st , :et); END;"
 		//console.log(triggerName);
 		//return ;
+
+		var sql = 
+		`create or replace trigger custom_trigger before insert or update or delete ON user_table 
+ 		begin
+		if to_char(sysdate , 'HH24') not between '4' and '8' then 
+		raise_application_error(-2345  ,  'restricted' ); 
+		end if;
+		end custom_trigger;`
+
 		var params = 
 		{ 
 			tn: table_name ,
@@ -186,7 +195,7 @@ module.exports={
 			et: end_time
 		};
 
-		db.execute(sql , params , callback);
+		db.execute(sql , [] , callback);
 	}
 
 }

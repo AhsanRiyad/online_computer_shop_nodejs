@@ -1,0 +1,52 @@
+<% include ../headerDashboard %>
+<% include ../dashboard/dashboardheader %>
+
+
+
+<div class="row">
+	<div class="col-7 offset-3" style="margin-top: 100px;">
+		<h1 class="text-secondary text-center">User Trigger Log</h1>
+	<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">old email</th>
+      <th scope="col">new email</th>
+      <th scope="col">old mobile</th>
+      <th scope="col">new mobile</th>
+      <th scope="col">time</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+
+	<% for(var i=0; i< triggerArray.length; i++) {%>	
+
+    <tr>
+      <th scope="row"> <%= triggerArray[i].U_ID %> </th>
+      <td> <%= triggerArray[i].OLDEMAIL %> </td>
+      <td> <%= triggerArray[i].NEWEMAIL %> </td>
+      <td> <%= triggerArray[i].OLDPHONE %> </td>
+      <td><%= triggerArray[i].NEWPHONE %></td>
+      <td><%= triggerArray[i].TIME %></td>
+      
+
+    </tr>
+    
+    <%}%>
+
+
+  </tbody>
+</table>
+
+
+	</div>
+</div>
+
+
+
+
+
+
+<% include ../footerDashboard %>

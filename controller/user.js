@@ -236,14 +236,14 @@ router.post('/disableTrigger' , function(req, res){
 
 
 
-router.get('/view_log' , function(req, res){
+router.get('/view_log_user' , function(req, res){
 
 	if(req.session.email == null){
 		res.redirect('/auth');
 	}
 
 	obj.userinfo = req.session.userinfo;
-	userModel.viewTrigger(function(result){
+	userModel.view_log_user(function(result){
 		console.log('view user section');
 		console.log(result.rows);
 
@@ -253,7 +253,7 @@ router.get('/view_log' , function(req, res){
 		obj.triggerArray = result.rows;
 		req.session.trigger_status = '';
 		console.log(obj.triggerArray);
-		res.render('user/viewTrigger' , obj);
+		res.render('user/view_log_user' , obj);
 	});
 	
 });

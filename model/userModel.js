@@ -193,6 +193,12 @@ module.exports={
 		console.log(sql);
 
 		db.execute(sql , [] , callback);
+	},
+	view_log_user: function(callback){
+		var sql = "select * from userinfo_log";
+
+		db.execute(sql , [] , callback);
+		
 	}
 
 }

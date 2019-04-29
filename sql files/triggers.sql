@@ -13,6 +13,10 @@ drop function disable_trigger;
 
 
 /
+
+
+drop trigger neg_price;
+
 create or replace trigger neg_price
     before update or insert on cart
     for each row
@@ -57,6 +61,8 @@ CREATE TABLE USERINFO_LOG
     time date );
 /
 
+drop trigger user_info_up;
+
 create or replace trigger user_info_up
     after update of u_password,u_address,u_email,u_mobile,first_name,last_name,u_type on user_table
     for each row
@@ -74,6 +80,8 @@ end;
 
 /
 
+drop trigger restrict_adminaw;
+
 create or replace trigger restrict_adminaw
     before update or insert on user_table
     for each row
@@ -89,4 +97,39 @@ create or replace trigger restrict_adminaw
 
     /
 
+
+
+
+/
+drop table REVIEW_LOG;
+
+CREATE TABLE REVIEW_LOG
+   (review_id NUMBER(5),
+    oldtext VARCHAR2(50),
+    newtext VARCHAR2(50),
+    oldstatus VARCHAR2(50),
+    newstatus VARCHAR2(50),
+    olddate date,
+    newdate date,
+    time date );
+
+/
+drop trigger review_up;
+/
+create or replace trigger review_up
+after update of review_text,review_status,review_date,product_id,user_id on review
+for each row
+begin
+insert into review_log values(:new.review_id,:old.review_text,:new.review_text,:old.review_status,:new.review_status,:old.review_date,:new.review_date,sysdate);
+end;
+
+/
+
+
+/*insert into review(review_id,review_text,review_status,review_date,product_id,user_id) values (2,'good','done',to_date('9-6-1981','dd-mm-yyyy'),2,3);
+
+update review set review_text='bad', review_date=to_date('9-6-2019','dd-mm-yyyy') where review_id=2;
+
+*/
+-- select * from user_triggers
 commit;

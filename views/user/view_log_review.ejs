@@ -1,0 +1,50 @@
+<% include ../headerDashboard %>
+<% include ../dashboard/dashboardheader %>
+
+
+
+<div class="row">
+	<div class="col-7 offset-3" style="margin-top: 100px;">
+		<h1 class="text-secondary text-center">Review Trigger Log</h1>
+	<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">old review</th>
+      <th scope="col">new review</th>
+      <th scope="col">old date</th>
+      <th scope="col">new date</th>
+      <th scope="col">time</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    
+
+	<% for(var i=0; i< triggerArray.length; i++) {%>	
+
+    <tr>
+      <th scope="row"> <%= triggerArray[i].REVIEW_ID %> </th>
+      <td> <%= triggerArray[i].OLDTEXT %> </td>
+      <td> <%= triggerArray[i].NEWTEXT %> </td>
+      <td> <%= triggerArray[i].OLDDATE %> </td>
+      <td><%= triggerArray[i].NEWDATE %></td>
+      <td><%= triggerArray[i].TIME %></td>     
+    </tr>
+    
+    <%}%>
+
+
+  </tbody>
+</table>
+
+
+	</div>
+</div>
+
+
+
+
+
+
+<% include ../footerDashboard %>

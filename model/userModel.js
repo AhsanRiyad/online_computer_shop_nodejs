@@ -244,6 +244,12 @@ module.exports={
 
 		db.execute(sql , [] , callback);
 
+	},
+	view_log_review: function(callback){
+		var sql = "select * from review_log";
+
+		db.execute(sql , [] , callback);
+
 	}
 
 }

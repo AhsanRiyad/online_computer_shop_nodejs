@@ -1,4 +1,15 @@
 
+-- not used
+
+
+/
+
+drop function enable_trigger;
+
+/
+
+drop function disable_trigger;
+
 /
 
 

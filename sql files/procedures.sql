@@ -4,6 +4,21 @@
 
 /
 
+drop function enable_trigger;
+
+/
+
+drop function disable_trigger;
+
+/
+
+
+
+
+
+
+/
+
 
 
 CREATE OR REPLACE PROCEDURE add_to_cart(

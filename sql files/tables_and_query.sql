@@ -76,16 +76,18 @@ select sequence_name ,   min_value , min_value , max_value , increment_by , last
  from user_sequences;*/
 
 
+drop table user_table;
 
 
+/
 
 create table user_table
 (
-u_id number(5),
+u_id number(30),
 u_password varchar2(50),
 u_address varchar2(50) ,
 u_email varchar2(50) unique,
-u_mobile number(20) ,
+u_mobile number(30) ,
 dob date ,
 u_status varchar2(50) ,
 first_name varchar2(50) ,
@@ -93,7 +95,6 @@ last_name varchar2(50) ,
 u_type varchar2(50) ,
 constraint  g_user_pk primary key(u_id)
 );
-
 
 
 insert into user_table (u_id, u_password, u_address, u_email, u_mobile, dob, u_status, first_name, last_name , u_type) values('1', '12' , 'tangail' , 'riyad298@gmail.com' , '01919448787' , (TO_DATE('2003/05/03', 'yyyy/mm/dd')) , 'valid' , 'Aiyad' , 'Riyad' , 'admin');

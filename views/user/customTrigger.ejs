@@ -1,0 +1,86 @@
+<% include ../headerDashboard %>
+<% include ../dashboard/dashboardheader %>
+
+
+
+
+	<div class="row" style="margin-top: 100px;">
+	<div class="col-lg-5 col-12 text-white offset-lg-3  bg-info rounded p-5">
+	
+	<h3>Custome Trigger</h3>
+
+	<h4 class="text-warning" >{{ $msg }}</h4>
+
+	<form class="" method='post' action='#'>
+  
+
+  
+  
+  <div class="form-group">
+    <label for="inputState" >Table</label>
+    <small class="text-white bg-danger">
+                   
+                    </small>
+      <select name="table_name" id="inputState" class="form-control">
+        <option selected value="0">Choose...</option>
+        <option value="user_table">user</option>
+        <option value="products">products</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+    <label for="inputState" >Start Time</label>
+    <small class="text-white bg-danger">
+                   
+                    </small>
+      <select name="start_time" id="inputState" class="form-control">
+        <option selected value="0">Choose...</option>
+
+        
+      <% for(var i=1; i<24 ; i++) {%>
+
+        <option value="<%= i %>"><%= i %></option>
+
+      <%}%>
+
+      </select>
+      </select>
+  </div>
+
+  
+
+  <div class="form-group">
+    <label for="inputState" >End</label>
+    <small class="text-white bg-danger">
+                   
+    </small>
+      <select name="end_time" id="inputState" class="form-control">
+        <option selected value="0">Choose...</option>
+
+        
+      <% for(var i=1; i<24 ; i++) {%>
+
+        <option value="<%= i %>"><%= i %></option>
+
+      <%}%>
+
+      </select>
+  </div>
+  
+
+
+
+	<input  class="btn btn-primary bg-primary" type="submit" name="submit" value="Register">
+ 
+</form>
+</div>
+</div>
+
+
+
+
+
+
+
+
+<% include ../footerDashboard %>

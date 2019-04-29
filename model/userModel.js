@@ -168,6 +168,25 @@ module.exports={
 		};
 
 		db.execute(sql , params , callback);
+	},
+
+	customTrigger: function( table_name ,  start_time , end_time , callback){
+		/*var sql = 
+		`BEGIN 
+		:status := disable_trigger(:triggerName); 
+		END;`;*/
+
+		var sql = "BEGIN custome_trigger_p(:tn , :st , :et); END;"
+		//console.log(triggerName);
+		//return ;
+		var params = 
+		{ 
+			tn: table_name ,
+			st: start_time , 
+			et: end_time
+		};
+
+		db.execute(sql , params , callback);
 	}
 
 }

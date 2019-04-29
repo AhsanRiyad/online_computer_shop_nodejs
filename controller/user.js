@@ -119,11 +119,70 @@ router.get('/view_trigger' , function(req, res){
 		//obj.userArray = result.rows;
 		obj.trigger_status = req.session.trigger_status; 
 		obj.triggerArray = result.rows;
+		req.session.trigger_status = '';
 		console.log(obj.triggerArray);
 		res.render('user/viewTrigger' , obj);
 	});
 	
 });
+
+
+
+router.get('/custom_trigger' , function(req, res){
+
+	if(req.session.email == null){
+		res.redirect('/auth');
+	}
+
+	obj.userinfo = req.session.userinfo;
+	userModel.viewTrigger(function(result){
+		console.log('view user section');
+		console.log(result.rows);
+
+		// return;
+		//obj.userArray = result.rows;
+		obj.trigger_status = req.session.trigger_status; 
+		obj.triggerArray = result.rows;
+		req.session.trigger_status = '';
+		console.log(obj.triggerArray);
+		res.render('user/customTrigger' , obj);
+	});
+	
+});
+
+
+
+
+router.post('/custom_trigger' , function(req, res){
+
+	if(req.session.email == null){
+		res.redirect('/auth');
+	}
+
+	var table_name = req.body.table_name;
+	var start_time = req.body.start_time;
+	var end_time = req.body.end_time;
+
+	console.log(table_name);
+	//return;
+	obj.userinfo = req.session.userinfo;
+	userModel.customTrigger(table_name ,start_time , end_time , function(result){
+		console.log('view user section');
+		console.log(result);
+
+		 return;
+		//obj.userArray = result.rows;
+		obj.trigger_status = req.session.trigger_status; 
+		obj.triggerArray = result.rows;
+		req.session.trigger_status = '';
+		console.log(obj.triggerArray);
+		res.redirect('/user/custom_trigger');
+	});
+	
+});
+
+
+
 
 
 
@@ -150,7 +209,6 @@ router.post('/enableTrigger' , function(req, res){
 
 
 });
-
 
 
 

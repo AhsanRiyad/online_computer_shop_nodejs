@@ -8,11 +8,17 @@
 		<h1 class="text-secondary text-center">Trigger List</h1>
     <h1 class="
 
+    <% if(trigger_status=='Trigger Disabled'){ %>
 
+    text-danger 
+
+    <%}%>
+
+    <% if(trigger_status=='Trigger Enabled'){ %>
 
     text-success 
 
-
+    <%}%>
 
     text-center">  <%= trigger_status %> </h1>
 	<table class="table">

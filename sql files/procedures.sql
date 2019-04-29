@@ -237,11 +237,30 @@ end;
 
 
 
+/*
+begin
+disable_trigger('NEG_PRICE');
+end;
+*/
 
 
 
+create or replace procedure custome_trigger_p(start_time IN number , end_time IN number)
+is
+begin
+
+EXECUTE IMMEDIATE 'create or replace trigger custom_trigger  before insert or update or delete on user_table
+begin
+if to_char(sysdate ,' || 'HH24'||') not between' || start_time || 'and' || end_time
+|| 'then' ||
+'raise_application_error(' || '-20201' ||  ',' || 'restricted' ||');' ||
+'end if;
+end custom_trigger;';
 
 
+end;
 
+
+/
 
 commit;

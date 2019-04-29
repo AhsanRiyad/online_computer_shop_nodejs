@@ -126,6 +126,56 @@ router.get('/viewuser' , function(req, res){
 });
 
 
+
+router.post('/enableTrigger' , function(req, res){
+	console.log('enableTrigger');
+	
+	var triggerName = req.body.enableTrigger;
+	//obj.userinfo = req.session.userinfo;
+	userModel.enableTrigger(triggerName , function(status){
+		
+		userModel.viewUser(function(result){
+			res.redirect('/user/view_trigger');
+		});
+
+	})
+
+
+});
+
+
+
+
+
+
+router.post('/disableTrigger' , function(req, res){
+	console.log('disableTrigger');
+	
+	var triggerName = req.body.disableTrigger;
+	//obj.userinfo = req.session.userinfo;
+	userModel.disableTrigger(triggerName , function(status){
+		
+		userModel.viewUser(function(result){
+			res.redirect('/user/view_trigger');
+		});
+
+	})
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 router.post('/deleteuser' , function(req, res){
 	console.log('delete promo');
 	

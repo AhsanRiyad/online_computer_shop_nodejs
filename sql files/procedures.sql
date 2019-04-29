@@ -216,5 +216,32 @@ select review_id into rev_id from review;*/
 
 
 
+create or replace procedure disable_trigger(triggerName IN varchar)
+IS
+begin
+EXECUTE IMMEDIATE 'ALTER trigger ' || triggerName || ' disable';
+end;
+
+
+/
+
+
+create or replace procedure enable_trigger(triggerName IN varchar)
+IS
+begin
+EXECUTE IMMEDIATE 'ALTER trigger ' || triggerName || ' enable';
+end;
+
+
+/
+
+
+
+
+
+
+
+
+
 
 commit;

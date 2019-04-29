@@ -137,6 +137,37 @@ module.exports={
 		var params = [];
 
 		db.getResult(sql , params , callback)
+	},
+
+	enableTrigger: function(triggerName ,  callback){
+		var sql = "BEGIN enable_trigger(:triggerName1); END;"
+		console.log(triggerName);
+		//return ;
+		var params = 
+		{ 
+			
+			triggerName1 : triggerName
+		};
+
+		db.execute(sql , params , callback);
+	},
+
+	disableTrigger: function(triggerName ,  callback){
+		/*var sql = 
+		`BEGIN 
+		:status := disable_trigger(:triggerName); 
+		END;`;*/
+
+		var sql = "BEGIN disable_trigger(:triggerName1); END;"
+		console.log(triggerName);
+		//return ;
+		var params = 
+		{ 
+			
+			triggerName1 : triggerName
+		};
+
+		db.execute(sql , params , callback);
 	}
 
 }

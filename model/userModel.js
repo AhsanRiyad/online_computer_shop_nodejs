@@ -180,13 +180,7 @@ module.exports={
 		//console.log(triggerName);
 		//return ;
 
-		var sql = 
-		`create or replace trigger custom_trigger before insert or update or delete ON user_table 
- 		begin
-		if to_char(sysdate , 'HH24') not between '4' and '8' then 
-		raise_application_error(-2345  ,  'restricted' ); 
-		end if;
-		end custom_trigger;`
+		var sql = "create or replace trigger custom_trigger before insert or update or delete ON "+table_name+" begin if to_char(sysdate , 'HH24') not between '"+start_time+"' and '"+end_time+"' then raise_application_error(-2345  , 'restricted' ); end if; end custom_trigger;";
 
 		var params = 
 		{ 
@@ -194,6 +188,9 @@ module.exports={
 			st: start_time , 
 			et: end_time
 		};
+
+		console.log(params);
+		console.log(sql);
 
 		db.execute(sql , [] , callback);
 	}

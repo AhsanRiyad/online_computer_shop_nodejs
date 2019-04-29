@@ -43,13 +43,15 @@ oracledb.getConnection(
           doRelease(connection);
           callback([]);
           //return;
+        }else{
+          callback(result);
+        doRelease(connection);
         }
         
         //console.log(result.rows);   
         
         // callback(result.rows);
-        callback(result);
-        doRelease(connection);
+        
       });
   });
 

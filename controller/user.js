@@ -28,6 +28,10 @@ router.get('/addUser' , function(req, res){
 	
 });
 
+
+
+
+
 router.post('/addUser' , function(req, res){
 	obj.userinfo = req.session.userinfo;
 	obj.msg = 'none';
@@ -75,6 +79,31 @@ router.post('/addUser' , function(req, res){
 	
 });
 
+// trigger controller starts
+
+router.get('/view_trigger' , function(req, res){
+
+	if(req.session.email == null){
+		res.redirect('/auth');
+	}
+
+	obj.userinfo = req.session.userinfo;
+	userModel.viewTrigger(function(result){
+		console.log('view user section');
+		console.log(result.rows);
+
+		// return;
+		//obj.userArray = result.rows;
+		obj.triggerArray = result.rows;
+		console.log(obj.triggerArray);
+		res.render('user/viewTrigger' , obj);
+	});
+	
+});
+
+
+
+// trigger controller ends
 
 
 router.get('/viewuser' , function(req, res){

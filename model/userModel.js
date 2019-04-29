@@ -131,6 +131,14 @@ module.exports={
 
 	}, 
 
+	viewTrigger: function(callback){
+		var sql = 'SELECT * FROM USER_TRIGGERS';
+
+		var params = [];
+
+		db.getResult(sql , params , callback)
+	}
+
 }
 
 

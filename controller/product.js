@@ -109,9 +109,14 @@ router.post('/review' , function(req, res){
 	productModel.addReview(revInfo , function(result){
 		console.log(result);
 		console.log(revInfo);
-		//return;
 		var url_p = 'productdetails/'+req.body.productid;
+		if(result==false){
+		req.session.rev_msg = 'cant post review now' ;
 		res.redirect(url_p);
+
+		}else{
+			
+		}
 	});
 
 	
@@ -391,11 +396,13 @@ router.get('/productdetails/:pid' , function(req, res){
 		productModel.getReview(pid , function(result){
 			console.log('get review controller');
 			
+			obj.rev_msg =  req.session.rev_msg;
 			console.log(result.rows);
 			console.log(result.length);
 			//console.log(result[0].review_text);
 			obj.reviews = result.rows;
 			console.log(obj);
+			req.session.rev_msg= '' ;
 			res.render('product/productdetails' , obj);	
 
 			

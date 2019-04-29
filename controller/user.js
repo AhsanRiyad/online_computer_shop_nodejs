@@ -169,7 +169,7 @@ router.post('/custom_trigger' , function(req, res){
 		console.log('view user section');
 		console.log(result);
 
-		 return;
+		 //return;
 		//obj.userArray = result.rows;
 		req.session.trigger_status = 'trigger created successfully'; 
 		obj.triggerArray = result.rows;

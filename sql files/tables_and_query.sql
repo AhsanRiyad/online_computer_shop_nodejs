@@ -31,7 +31,7 @@ drop sequence product_seq;
 
 drop sequence review_seq;
 
-
+drop view cart_cout;
 
 
 
@@ -323,6 +323,7 @@ CREATE TABLE review (
 
 
 -- UPDATE user_table SET u_password= :pass ,u_email= :email ,u_mobile= :mob WHERE u_id= :id;
+
 
 
 

@@ -2,6 +2,9 @@
 
 -- cart procedure starts
 
+/
+
+
 
 CREATE OR REPLACE PROCEDURE add_to_cart(
 pid IN cart.PRODUCT_ID%type,
@@ -244,7 +247,7 @@ end;
 */
 
 
-
+/*
 create or replace procedure custome_trigger_p(start_time IN number , end_time IN number)
 is
 begin
@@ -259,8 +262,8 @@ end custom_trigger;';
 
 
 end;
+*/
 
 
-/
 
 commit;

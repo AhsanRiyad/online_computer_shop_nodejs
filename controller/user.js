@@ -170,11 +170,11 @@ router.post('/custom_trigger' , function(req, res){
 		console.log('view user section');
 		console.log(result);
 
-		 return;
+		 //return;
 		//obj.userArray = result.rows;
-		obj.trigger_status = req.session.trigger_status; 
+		req.session.trigger_status = 'trigger created successfully'; 
 		obj.triggerArray = result.rows;
-		req.session.trigger_status = '';
+		//req.session.trigger_status = '';
 		console.log(obj.triggerArray);
 		res.redirect('/user/custom_trigger');
 	});

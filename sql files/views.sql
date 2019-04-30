@@ -55,6 +55,25 @@ select * from cart_total_amount where uuid = 1;
 
 /
 
+drop view review_view;
+/
+
+create or replace view review_view as
+select * from review;
+/
+-- /
+-- select * from review_view;
+/
+-- delete from review_view where review_id = 2
+
+
+
+
+
+
+
+
+
 commit;
 
 

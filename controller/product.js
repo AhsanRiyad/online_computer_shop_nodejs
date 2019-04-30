@@ -115,7 +115,8 @@ router.post('/review' , function(req, res){
 		res.redirect(url_p);
 
 		}else{
-			
+			req.session.rev_msg = 'review posted successfully' ;
+			res.redirect(url_p);
 		}
 	});
 

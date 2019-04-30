@@ -293,7 +293,7 @@ module.exports={
 
 	},
 	getReview: function(pid , callback){
-		var sql = "SELECT review_id, review_text, review_status, review_date, product_id, user_id FROM review WHERE product_id =:pid ";
+		var sql = "SELECT u.last_name as name  ,  review_id, review_text, review_status, review_date, product_id, user_id FROM review , user_table u  WHERE product_id =:pid and review.user_id =  u.u_id";
 
 		db.getResult(sql , {pid : pid} ,  callback);
 
@@ -303,7 +303,7 @@ module.exports={
 		//var sql1 = "DELETE FROM `review` WHERE review_id="+rev_id+"";
 
 
-		var sql = "DELETE FROM review WHERE review_id=:rev_id";
+		var sql = "DELETE FROM review_view WHERE review_id=:rev_id";
 		console.log(sql);
 		console.log('product model review');
 		db.execute(sql , [ rev_id ], callback);

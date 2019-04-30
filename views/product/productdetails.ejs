@@ -47,8 +47,24 @@
 				<div class="container">
 					<h1 class="display-6">Reviews</h1>
 
-					<h1 class="display-6 text-white bg-danger">
-						<%= rev_msg %>
+					<h1 class="display-6 text-white 
+						
+					
+						<% if(rev_msg=='cant post review now'){ %>
+
+    bg-danger 
+
+    <%}%>
+
+    <% if(rev_msg=='review posted successfully'){ %>
+
+    bg-success
+
+    <%}%>
+
+">
+					<%= rev_msg %>
+
 					</h1>
 					
 					<%
@@ -59,7 +75,15 @@
 
 
 					<hr>
+					<p>
+						Review by: <%= reviews[i].NAME %>
+					</p>
+					<p>
+						Review Date : <%= reviews[i].REVIEW_DATE %>
+					</p>
+
 					<p class="lead">
+						Text: 
 						<%= reviews[i].REVIEW_TEXT %>
 
 					</p>

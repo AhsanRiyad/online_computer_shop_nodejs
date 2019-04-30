@@ -223,15 +223,9 @@ DBMS_OUTPUT.put_line(status);
 
 DBMS_OUTPUT.put_line('helllow');
 
-
-
-
 end;
 
 select review_id into rev_id from review;*/
-
-
-
 
 
 create or replace procedure disable_trigger(triggerName IN varchar)
@@ -277,6 +271,56 @@ end custom_trigger;';
 
 
 end;
+*/
+
+
+drop function valid_status;
+/
+
+create or replace function valid_status(descrip in promo.promo_desc%type)
+return boolean
+is
+cursor c1
+is
+select PROMO_DESC from promo;
+begin
+for i in c1 loop
+if i.PROMO_DESC =descrip then
+return true;
+end if;
+end loop;
+return false;
+end;
+
+
+/
+
+
+create or replace procedure perc(descrip in promo.promo_desc%type,percentage out promo.promo_percentage%type)
+is
+begin
+if valid_status(descrip) then
+
+select promo_percentage into percentage from promo where promo_desc=descrip;
+else
+percentage:=0;
+end if;
+end;
+
+/
+
+/*
+declare
+descrip promo.promo_desc%type:=:value_p;
+percentage promo.promo_percentage%type;
+begin
+perc(descrip,percentage);
+dbms_output.put_line(percentage);
+end;
+
+SET SERVEROUTPUT ON
+
+
 */
 
 

@@ -146,6 +146,10 @@ end;
 
 /
 
+
+
+
+
 -- insert into promo values (5,'abc',to_date('17-12-1980','dd-mm-yyyy'),-6,'invalid',3,4,8);
 
 

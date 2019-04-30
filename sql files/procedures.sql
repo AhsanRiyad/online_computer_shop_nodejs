@@ -323,6 +323,40 @@ SET SERVEROUTPUT ON
 
 */
 
+/*
+/
+	
+DROP PACKAGE pkg_product;
+/
+*/
+
+/*
+/
+create package pkg_product as
+procedure product_retrieve(p_id in products.product_id%type);
+end pkg_product;
+/
+create or replace package body pkg_product as
+procedure product_retrieve(p_id in products.product_id%type)
+is
+p_name products.product_name%type;
+p_price products.product_price%type;
+des products.descriptions%type;
+begin
+select product_name,product_price,descriptions into p_name,p_price,des from products where product_id = p_id;
+dbms_output.put_line('Product Name: ' || p_name);
+dbms_output.put_line('Product Price: ' || p_price);
+dbms_output.put_line('Descriptions: ' || des);
+end  product_retrieve;
+end pkg_product;
+/
+declare
+begin
+pkg_product.product_retrieve(33);
+end;
+
+/*/
+
 
 
 commit;

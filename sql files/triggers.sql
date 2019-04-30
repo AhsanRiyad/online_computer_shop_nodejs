@@ -15,9 +15,9 @@ drop function disable_trigger;
 /
 
 
-drop trigger neg_price;
+drop trigger neg_price_cart;
 
-create or replace trigger neg_price
+create or replace trigger neg_price_cart
     before update or insert on cart
     for each row
     begin
@@ -124,6 +124,29 @@ insert into review_log values(:new.review_id,:old.review_text,:new.review_text,:
 end;
 
 /
+
+
+
+
+
+drop trigger neg_price_promo;
+
+/
+
+
+create or replace trigger neg_price_promo
+before update or insert on promo
+for each row
+begin
+if :new.promo_percentage <= 0 then
+raise_application_error(-2345,'promo percentage can not be negative');
+end if;
+end;
+
+
+/
+
+-- insert into promo values (5,'abc',to_date('17-12-1980','dd-mm-yyyy'),-6,'invalid',3,4,8);
 
 
 /*insert into review(review_id,review_text,review_status,review_date,product_id,user_id) values (2,'good','done',to_date('9-6-1981','dd-mm-yyyy'),2,3);

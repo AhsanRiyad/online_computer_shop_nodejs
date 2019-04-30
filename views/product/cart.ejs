@@ -69,8 +69,33 @@
 
 	<tr>
 		<th scope="row"></th>
-		<td></td>
-		<td></td>
+
+	<form action="#" method="post">
+		<td>
+			<div class="form-group">
+
+
+				<input
+				
+				<% if(promoMsg=='promo added') {%>
+
+				disabled
+				<%}%>
+				
+	
+
+				 name="promo" type="text" class="form-control bg-info text-white" id="inputAddress" placeholder="" value="  <%=  promoMsg %>">
+			</div>
+			<small class="text-success">
+				<%= perc %>% promo applied
+			</small>
+		</td>
+		<td>
+			<input type="submit" value="submit" class="btn btn-info" name="submit">
+		</td>
+	</form>
+
+
 		<td>Total Amount:</td>
 		<td> <%=total%></td>
 

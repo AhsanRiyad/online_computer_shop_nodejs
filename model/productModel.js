@@ -10,17 +10,17 @@ module.exports={
 		var sql1 = "INSERT INTO `promo`(`promo_desc`,  `promo_percentage`, `promo_status`, `promo_limit`, `promo_use_count`, `a_id` , `Promo_expiry`) VALUES ('"+promo.promo_desc+"' , "+promo.promo_percentage+" , '"+promo.promo_status+"' ,"+promo.promo_limit+","+promo.promo_use_count+" , "+promo.user_id+" , '"+promo.promo_expiry+"' )";
 
 
-        var sql="INSERT INTO promo(promo_id,promo_desc,  promo_percentage, promo_status, promo_limit, promo_use_count, a_id, Promo_expiry) VALUES (ID.nextval,:pr_desc ,:pr_percentage,:pr_status,:pr_limit, :use_count  ,  :uuid, TO_DATE(:pr_expiry, 'yyyy/mm/dd'))";
+		var sql="INSERT INTO promo(promo_id,promo_desc,  promo_percentage, promo_status, promo_limit, promo_use_count, a_id, Promo_expiry) VALUES (ID.nextval,:pr_desc ,:pr_percentage,:pr_status,:pr_limit, :use_count  ,  :uuid, TO_DATE(:pr_expiry, 'yyyy/mm/dd'))";
 
-        var params = 
-        {
-         pr_desc:  promo.promo_desc, 
-         pr_percentage: promo.promo_percentage,
-         pr_status: promo.promo_status,
-         pr_limit: promo.promo_limit,
-         use_count : promo.promo_use_count,
-         uuid :  promo.user_id,
-         pr_expiry : promo.promo_expiry
+		var params = 
+		{
+			pr_desc:  promo.promo_desc, 
+			pr_percentage: promo.promo_percentage,
+			pr_status: promo.promo_status,
+			pr_limit: promo.promo_limit,
+			use_count : promo.promo_use_count,
+			uuid :  promo.user_id,
+			pr_expiry : promo.promo_expiry
 
 		};
 
@@ -52,14 +52,14 @@ module.exports={
 
 
 		var params = 
-        {
-         pr_desc:  promo.promo_desc, 
-         pr_percentage: promo.promo_percentage,
-         pr_status: promo.promo_status,
-         pr_limit: promo.promo_limit,
-         use_count : promo.promo_use_count,
-         pr_expiry : promo.promo_expiry,
-         pid: promo.promo_id
+		{
+			pr_desc:  promo.promo_desc, 
+			pr_percentage: promo.promo_percentage,
+			pr_status: promo.promo_status,
+			pr_limit: promo.promo_limit,
+			use_count : promo.promo_use_count,
+			pr_expiry : promo.promo_expiry,
+			pid: promo.promo_id
 
 		};
 
@@ -269,6 +269,20 @@ module.exports={
 		db.getResult(sql , params , callback);
 
 	},
+	getCartTotal: function(uid ,  callback){
+		//var sql = "call cartPage("+uid+")";
+		
+
+		//var sql1 = "select SUM(pr.product_price*p.product_qntity) as total from cart c , p_include_cart p , products pr where p.cart_id = c.cart_id and p.product_id = pr.product_id and c.user_id = :uuid";
+
+		var sql = "select * from cart_total_amount where uuid = :uuid";
+
+		console.log(sql);
+		var params = [ uid ];
+
+		db.getResult(sql , params , callback);
+
+	},
 	addReview: function(revInfo , callback){
 
 		//var sql1 = "call review("+revInfo.user_id+" , "+revInfo.productId+" , '"+revInfo.rev_text+"' , '"+revInfo.rev_date+"');";
@@ -328,6 +342,26 @@ module.exports={
 		db.getResult(sql , [ catName , subCat ] ,callback);
 
 
+
+	}
+	,
+	checkPromo: function(promo_code ,  callback){
+
+		var sql = 
+		`BEGIN
+		perc(:promo , :percentage );
+		END;`;
+
+		var params = {
+
+			promo : promo_code  ,
+			percentage : { type: oracledb.NUMBER , dir: oracledb.BIND_OUT }
+
+		}
+
+		console.log(sql);
+
+		db.getResult(sql , params ,callback);
 
 	}
 

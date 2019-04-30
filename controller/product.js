@@ -325,12 +325,19 @@ router.get('/cart' , function(req, res){
 			productModel.getCartTotal(obj.user_id_P , function(result){
 			console.log(result.rows[0].TOTAL);
 			//return;
-			
-			
-
-
-			
 			obj.total = result.rows[0].TOTAL;
+			if(req.session.perc>0){
+				obj.total = result.rows[0].TOTAL-(((result.rows[0].TOTAL)*(req.session.perc))/100);
+				console.log(req.session.perc);
+				console.log(obj.total);
+			}
+			
+
+			obj.promoMsg = req.session.promoMsg;
+			obj.perc = req.session.perc;
+			req.session.promoMsg = '';
+			req.session.perc = 0;
+			
 			res.render('product/cart' , obj);
 
 		});
@@ -348,6 +355,37 @@ router.get('/cart' , function(req, res){
 	
 });
 
+router.post('/cart' , function(req, res){
+	// session
+	var promoCode = req.body.promo;
+
+	
+
+	productModel.checkPromo(promoCode , function(result){
+			console.log(result.outBinds.percentage);
+			//return;
+			
+			if(result.outBinds.percentage == 0){
+				req.session.promoMsg = 'invalid promo';
+				req.session.perc = result.outBinds.percentage; 
+				res.redirect('/product/cart');
+			}else{
+				req.session.promoMsg = 'promo added'; 
+				req.session.perc = result.outBinds.percentage; 
+				res.redirect('/product/cart');
+			}
+
+			//obj.total = result.rows[0].TOTAL;
+			//res.render('product/cart' , obj);
+			
+		});
+
+	
+
+
+
+	
+});
 
 // product details starts
 

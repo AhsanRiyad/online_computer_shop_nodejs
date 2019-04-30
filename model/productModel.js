@@ -225,7 +225,7 @@ module.exports={
 
 		var sql = "SELECT COUNT(*) as cart_count  FROM cart WHERE user_id =:uuid";
 
-
+		//var sql = "select cart_count from cart_count where USER_ID = :uuid;"
 		console.log('cart_count'+' ' + uid);
 		console.log(sql);
 		var params = {
@@ -255,7 +255,10 @@ module.exports={
 		//var sql = "call cartPage("+uid+")";
 		
 
-		var sql = "select SUM(pr.product_price*p.product_qntity) as total from cart c , p_include_cart p , products pr where p.cart_id = c.cart_id and p.product_id = pr.product_id and c.user_id = :uuid";
+		var sql1 = "select SUM(pr.product_price*p.product_qntity) as total from cart c , p_include_cart p , products pr where p.cart_id = c.cart_id and p.product_id = pr.product_id and c.user_id = :uuid";
+
+		var sql = "select * from cart_total_amount where uuid = :uuid";
+
 		console.log(sql);
 		var params = [ uid ];
 

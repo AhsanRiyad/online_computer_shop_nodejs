@@ -65,11 +65,16 @@ select * from review;
 -- select * from review_view;
 /
 -- delete from review_view where review_id = 2
+/
+
+drop view visit_view ; 
 
 
+/
+create or replace view visit_view as
+select * from visit;
 
-
-
+/
 
 
 

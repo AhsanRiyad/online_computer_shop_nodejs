@@ -168,7 +168,11 @@ module.exports={
 		db.getResult(sql , params ,  callback);
 	},
 	insertIp: function(ip , callback){
-		var sql = "INSERT INTO visit(product_id,user_ip) VALUES (:pid , :ip)";
+		var sql1 = "INSERT INTO visit(product_id,user_ip) VALUES (:pid , :ip)";
+
+
+		var sql = "INSERT INTO visit_view(product_id,user_ip) VALUES (:pid , :ip)"
+
 
 		console.log(sql);
 		var params = { 
@@ -220,7 +224,7 @@ module.exports={
 	},
 	cart_count: function(uid , callback){
 		
-		var sql1 = "SELECT COUNT(*) as cart_count FROM `cart` WHERE user_id = "+uid+";"
+		//var sql1 = "SELECT COUNT(*) as cart_count FROM `cart` WHERE user_id = "+uid+";"
 
 
 		var sql = "SELECT COUNT(*) as cart_count  FROM cart WHERE user_id =:uuid";
@@ -242,7 +246,7 @@ module.exports={
 		//var sql = "call cartPage("+uid+")";
 		
 
-		var sql1 = "select p.product_id , pr.product_name , pr.product_price , p.product_qntity , pr.DESCRIPTIONS ,  (pr.product_price*p.product_qntity) as total from cart c , p_include_cart p , products pr where p.cart_id = c.cart_id and p.product_id = pr.product_id and c.user_id = :uuid";
+		//var sql1 = "select p.product_id , pr.product_name , pr.product_price , p.product_qntity , pr.DESCRIPTIONS ,  (pr.product_price*p.product_qntity) as total from cart c , p_include_cart p , products pr where p.cart_id = c.cart_id and p.product_id = pr.product_id and c.user_id = :uuid";
 		
 		var sql = "select * from cart_products where uuid = :uuid";
 		console.log(sql);
@@ -255,7 +259,7 @@ module.exports={
 		//var sql = "call cartPage("+uid+")";
 		
 
-		var sql1 = "select SUM(pr.product_price*p.product_qntity) as total from cart c , p_include_cart p , products pr where p.cart_id = c.cart_id and p.product_id = pr.product_id and c.user_id = :uuid";
+		//var sql1 = "select SUM(pr.product_price*p.product_qntity) as total from cart c , p_include_cart p , products pr where p.cart_id = c.cart_id and p.product_id = pr.product_id and c.user_id = :uuid";
 
 		var sql = "select * from cart_total_amount where uuid = :uuid";
 
